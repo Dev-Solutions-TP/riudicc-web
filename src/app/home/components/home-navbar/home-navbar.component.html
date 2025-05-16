@@ -1,0 +1,106 @@
+<nav class="navbar bg-base-100/90 shadow-xs backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5">
+    <div class="navbar-start">
+        <div class="dropdown">
+            <button
+                aria-label="button"
+                tabindex="0"
+                role="button"
+                class="btn btn-ghost lg:hidden"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 6h16M4 12h8m-8 6h16"
+                    ></path>
+                </svg>
+            </button>
+            <ul class="menu dropdown-content menu-md z-1 mt-3 w-52 gap-2 rounded-box bg-base-100 p-2 shadow-sm">
+                <!-- Ejemplo de iterador Angular -->
+                <!--
+                <li *ngFor="let item of navigation; let i = index">
+                    <a [href]="item.href">{{ item.name }}</a>
+                </li>
+                -->
+                <!-- Ejemplo estático -->
+                @for (route of homeRoutes; track route.path) {
+                <li><a
+                        [routerLink]="route.path"
+                        routerLinkActive="text-secondary"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        class="btn btn-ghost font-montserrat"
+                    >{{route.title}}</a></li>
+                }
+            </ul>
+        </div>
+        <a
+            routerLink="/"
+            class="btn btn-ghost text-xl font-montserrat"
+        >
+            RIUDICC
+        </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+        <!-- Ejemplo de iterador Angular -->
+        <!--
+        <nav *ngFor="let item of navigation; let i = index" class="menu menu-horizontal">
+            <a
+                [href]="item.href"
+                [ngClass]="{
+                    'hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md': true,
+                    'text-primary bg-primary/10': pathname === item.href
+                }"
+            >
+                {{ item.name }}
+            </a>
+        </nav>
+        -->
+        <!-- Ejemplo estático -->
+
+        <ul class="menu menu-horizontal px-1">
+            <li><a>Item 1</a></li>
+            <li>
+                <details>
+                    <summary>Parent</summary>
+                    <ul class="p-2">
+                        <li><a>Submenu 1</a></li>
+                        <li><a>Submenu 2</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li><a>Item 3</a></li>
+        </ul>
+
+        @for (route of homeRoutes; track route.path) {
+
+        <ul class="menu menu-horizontal px-1">
+            <a
+                routerLink="/about"
+                class="hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+            >
+                Item 1
+            </a>
+        </ul>
+        }
+        <nav class="menu menu-horizontal">
+            <a
+                routerLink="/"
+                class="hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+            >
+                Item 2
+            </a>
+        </nav>
+    </div>
+    <div class="navbar-end">
+        <!-- Reemplaza ThemeToggle por tu componente Angular si lo tienes -->
+        <!-- <app-theme-toggle></app-theme-toggle> -->
+        ThemeToggle
+    </div>
+</nav>
