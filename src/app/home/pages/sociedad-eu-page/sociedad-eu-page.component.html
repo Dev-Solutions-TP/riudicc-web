@@ -1,1 +1,16 @@
-<p>socieda-eu-page works!</p>,
+<page-title
+    firstWord="Our"
+    secondWord="Projects"
+></page-title>
+
+<div class="grid grid-cols-1  lg:grid-cols-2 mt-2 gap-3">
+
+    @for (proyecto of sociedadResponse.value()?.items; track $index) {
+
+    <project-card [proyecto]="proyecto"></project-card>
+    }
+    @empty {
+    <p>No data loaded yet.</p>
+    }
+
+</div>
