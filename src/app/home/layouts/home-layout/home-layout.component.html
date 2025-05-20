@@ -1,6 +1,16 @@
-<home-navbar></home-navbar>
-<section class="container mx-auto">
-    <section class="container mx-auto px-4 sm:px-6 md:px-10  py-8">
-        <router-outlet></router-outlet>
+<main class="m-auto flex-grow flex flex-col min-h-screen">
+
+
+
+    <home-navbar></home-navbar>
+    <section class="container mx-auto">
+        <section class="container mx-auto px-4 sm:px-6 md:px-10  py-8">
+            <router-outlet></router-outlet>
+        </section>
     </section>
-</section>
+
+    <div class="flex-1 flex-grow"></div>
+    <app-footer></app-footer>
+
+
+</main>

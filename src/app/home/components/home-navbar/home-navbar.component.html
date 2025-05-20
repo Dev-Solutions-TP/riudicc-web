@@ -1,4 +1,5 @@
-<nav class="navbar bg-base-100/90 shadow-xs backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5">
+<nav
+    class="navbar bg-base-100/90 shadow-xs backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5 z-50 relative">
     <div class="navbar-start">
         <div class="dropdown">
             <button
@@ -22,14 +23,17 @@
                     ></path>
                 </svg>
             </button>
-            <ul class="menu dropdown-content menu-md z-1 mt-3 w-52 gap-2 rounded-box bg-base-100 p-2 shadow-sm">
+            <ul class="menu dropdown-content menu-md z-50 mt-3 w-52 gap-2 rounded-box bg-base-100 p-2 shadow-sm">
+
+
                 @for (route of homeRoutes; track route.path) {
                 <li><a
                         [routerLink]="route.path"
                         routerLinkActive="text-secondary"
                         [routerLinkActiveOptions]="{ exact: true }"
+                        s
                         class="btn btn-ghost font-montserrat"
-                    >{{route.title}}</a></li>
+                    > {{ getTitle(route.key) }}</a></li>
                 }
             </ul>
         </div>
@@ -45,22 +49,35 @@
 
         @for (route of homeRoutes; track route.path) {
 
-        <ul class="menu menu-horizontal px-1">
+        <ul class="menu menu-horizontal px-1 ">
             <a
                 [routerLink]="route.path"
                 routerLinkActive="text-secondary"
                 [routerLinkActiveOptions]="{ exact: true }"
                 class="hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
             >
-                {{route.title}}
+                {{getTitle(route.key)}}
             </a>
         </ul>
         }
 
     </div>
     <div class="navbar-end">
-        <!-- Reemplaza ThemeToggle por tu componente Angular si lo tienes -->
-        <!-- <app-theme-toggle></app-theme-toggle> -->
-        ThemeToggle
+
+        <button
+            class="btn btn-sm btn-outline"
+            (click)="toggleLocale()"
+        >
+            {{ localeService.getLocale | uppercase }}
+            <span class="ml-2">
+                @if (localeService.getLocale === 'es') {
+                <!-- Ejemplo: emoji de bandera o SVG -->
+                <span>🇪🇸</span>
+                }
+                @if (localeService.getLocale === 'en') {
+                <span>🇬🇧</span>
+                }
+            </span>
+        </button>
     </div>
 </nav>

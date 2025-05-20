@@ -1,12 +1,27 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, LOCALE_ID, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import localeEn from '@angular/common/locales/en';
+import { LocaleService } from './shared/services/locale.service';
+
+
+
+registerLocaleData(localeEs, 'es');
+
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
-  provideHttpClient(withFetch())
+  provideHttpClient(withFetch()),
+  {
+    provide: LOCALE_ID,
+    deps: [LocaleService],
+    useFactory: (LocaleService: LocaleService) => LocaleService.getLocale
+  }
 
   ]
 };

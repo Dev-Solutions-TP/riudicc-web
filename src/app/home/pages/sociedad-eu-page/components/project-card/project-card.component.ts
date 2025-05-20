@@ -1,25 +1,27 @@
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, inject, input, LOCALE_ID, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SociedadEU } from '../../interfaces/sociedad.interface';
+import { ProjectImagePipe } from '../../pipes/project-image.pipe';
 
 @Component({
   selector: 'project-card',
-  imports: [RouterLink],
+  imports: [RouterLink, ProjectImagePipe],
   templateUrl: './project-card.component.html',
 })
 export class ProjectCardComponent {
 
   constructor() { }
 
+  currentLocale = signal(inject(LOCALE_ID));
 
   proyecto = input.required<SociedadEU>();
 
-  idiomaActual = signal('es'); // o 'en', o como quieras gestionar el idioma
+  // currentLocale = signal('es'); // o 'en', o como quieras gestionar el idioma
 
   // Obtiene la traducción preferida según idiomaActual, sino la primera
   traduccion = computed(() => {
     const actual = this.proyecto().traducciones.find(
-      t => t.idioma === this.idiomaActual()
+      t => t.idioma === this.currentLocale()
     );
     return actual ?? this.proyecto().traducciones[0];
   });

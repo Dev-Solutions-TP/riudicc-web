@@ -20,6 +20,7 @@ export class SociedaEuPageComponent {
   sociedadResponse = rxResource({
     request: () => ({}),
     loader: ({ request }) => {
+
       return this.sociedadService.getSociedad({});
     }
   });
