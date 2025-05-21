@@ -1,1 +1,87 @@
-<p>home-page works!</p>,
+<page-title
+    firstWord="___________"
+    secondWord="RIUDICC"
+></page-title>
+
+
+<!-- Sección: What's News -->
+<section>
+    <!-- <h2 class="text-2xl font-bold mb-4">What's News</h2> -->
+    <page-title
+        firstWord="What's News"
+        secondWord=""
+    ></page-title>
+    <hr class="mb-6 border-t border-gray-300">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Noticia 1 -->
+        <article class="p-4 border rounded shadow-sm bg-white">
+            <img
+                src="https://source.unsplash.com/featured/?university,news"
+                alt="Noticia"
+                class="w-full h-40 object-cover rounded mb-3"
+            >
+            <h3 class="font-semibold text-lg">Noticia Genérica 1</h3>
+            <p class="text-sm text-gray-600">Descripción breve de la noticia destacada en la universidad.</p>
+            <!-- Banderita -->
+            <div class="flex items-center space-x-2 mt-2">
+                <img
+                    src="https://flagcdn.com/w40/ec.png"
+                    alt="Ecuador"
+                    class="w-6 h-4 object-cover rounded-sm"
+                >
+                <span class="text-sm text-gray-500 capitalize">Ecuador</span>
+            </div>
+        </article>
+
+        <!-- Noticia 2 -->
+        <article class="p-4 border rounded shadow-sm bg-white">
+            <img
+                src="https://source.unsplash.com/featured/?students,announcement"
+                alt="Noticia"
+                class="w-full h-40 object-cover rounded mb-3"
+            >
+            <h3 class="font-semibold text-lg">Noticia Genérica 2</h3>
+            <p class="text-sm text-gray-600">Otra noticia reciente sobre actividades institucionales.</p>
+            <!-- Banderita -->
+            <div class="flex items-center space-x-2 mt-2">
+                <img
+                    src="https://flagcdn.com/w40/co.png"
+                    alt="Colombia"
+                    class="w-6 h-4 object-cover rounded-sm"
+                >
+                <span class="text-sm text-gray-500 capitalize">Colombia</span>
+            </div>
+        </article>
+    </div>
+
+
+    <div class="mt-4 text-right">
+        <button class="btn btn-outline btn-primary">More news</button>
+    </div>
+</section>
+
+<!-- Sección: Events -->
+<section>
+    <h2 class="text-2xl font-bold mb-4"></h2>
+    <page-title
+        firstWord="Events"
+        secondWord=""
+    ></page-title>
+    <hr class="mb-6 border-t border-gray-300">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="p-4 border rounded shadow-sm bg-white">
+            <h3 class="font-semibold text-lg">Evento Genérico 1</h3>
+            <p class="text-sm text-gray-600">Descripción breve del evento próximo.</p>
+        </article>
+        <article class="p-4 border rounded shadow-sm bg-white">
+            <h3 class="font-semibold text-lg">Evento Genérico 2</h3>
+            <p class="text-sm text-gray-600">Otra descripción breve del evento.</p>
+        </article>
+    </div>
+
+    <div class="mt-4 text-right">
+        <button class="btn btn-outline btn-primary">More events</button>
+    </div>
+</section>

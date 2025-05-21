@@ -1,0 +1,18 @@
+<page-title
+    firstWord="Strategic"
+    secondWord="Partners"
+></page-title>
+
+
+
+<div class="grid grid-cols-1  mt-2 gap-10">
+
+    @for (institucion of institucionesResponse.value()?.items; track $index) {
+
+    <institucion-card [institucion]="institucion"></institucion-card>
+    }
+    @empty {
+    <p>No data loaded yet.</p>
+    }
+
+</div>

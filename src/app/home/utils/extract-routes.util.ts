@@ -33,7 +33,7 @@ export function extractRoutes(
         const key = route.path && route.path.length > 0 ? route.path : 'home';
 
         // Solo agrega si la ruta tiene título (opcional)
-        if (route.title && typeof route.title === 'string' && route.path !== '**' && route.path !== 'news' && route.path !== 'events') {
+        if (route.title && typeof route.title === 'string' && route.path !== '**' && route.path !== 'news' && route.path !== 'events' && route.path !== 'regulations') {
             result.push({ key, path: fullPath });
         }
 
