@@ -1,5 +1,5 @@
 
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { PageTitleComponent } from "../../components/page-title/page-title.component";
 import { InstitucionesService } from './services/instituciones.service';
 import { rxResource } from '@angular/core/rxjs-interop';
@@ -10,7 +10,7 @@ import { InstitucionCardComponent } from "./components/project-card/institucion-
   imports: [PageTitleComponent, InstitucionCardComponent],
   templateUrl: './instituciones-page.component.html',
 })
-export class AliadosPageComponent {
+export class InstitucionesPageComponent {
 
 
   private institucionesServer = inject(InstitucionesService);

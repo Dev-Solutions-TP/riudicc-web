@@ -3,7 +3,7 @@ import { inject, Injectable, LOCALE_ID, signal } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { InstitucionResponse } from '../interfaces/aliados.interface';
+import { BannersResponse } from '../components/interfaces/banner.interface';
 
 
 
@@ -19,7 +19,7 @@ interface Options {
 
 
 @Injectable({ providedIn: 'root' })
-export class InstitucionesService {
+export class BannersService {
     constructor() { }
 
 
@@ -29,18 +29,15 @@ export class InstitucionesService {
 
 
 
-    getInstituciones(option: Options): Observable<InstitucionResponse> {
+    getBanners(option: Options): Observable<BannersResponse> {
         const { limit = 8, offset = 0 } = option;
 
-        return this.http.get<InstitucionResponse>(`${API_URL}/instituciones`, {
+        return this.http.get<BannersResponse>(`${API_URL}/banners`, {
             params: {
                 limit,
                 offset,
             },
-        }).pipe(
-
-            tap((response) => console.log('Response:', response)),
-        );
+        });
     }
 
 }

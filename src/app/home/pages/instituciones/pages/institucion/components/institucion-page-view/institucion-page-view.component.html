@@ -1,0 +1,61 @@
+<div class="grid grid-cols-1 ">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+        <div class="md:col-span-2 lg:col-span-3">
+            <figure class="w-full flex justify-center">
+                <!-- <img
+                    [src]="institucion().images | institucionImagePipe"
+                    [alt]="imagenPrincipal()?.altText || traduccion()?.description"
+                    class="w-80 h-60 object-contain"
+                > -->
+            </figure>
+            <div class="card-body">
+
+                <span class="block text-1xl md:text-2xl font-bold text-black">
+                    {{ traduccion()?.name }}
+                </span>
+                <p>{{ traduccion()?.description }}</p>
+
+                <!-- Bandera -->
+                <div class="flex items-center space-x-2 mt-2">
+                    <img
+                        [src]="'https://flagcdn.com/w40/' + getCountryCode(institucion().pais) + '.png'"
+                        class="w-6 h-4 object-cover rounded-sm"
+                        [alt]="institucion().pais"
+                    >
+                    <span class="text-sm text-gray-500 capitalize">{{ institucion().pais }}</span>
+                </div>
+
+                <!-- Google Maps -->
+                <a
+                    class="text-sm text-blue-600 hover:underline mt-2"
+                    [href]="'https://www.google.com/maps?q=' + institucion().latitud + ',' + institucion().longitud"
+                    target="_blank"
+                >
+                    Ver ubicación en Google Maps
+                </a>
+            </div>
+        </div>
+        <!-- 🖼 Imagen: 1/4 -->
+        <!-- <figure class="md:col-span-2 lg:col-span-1 aspect-[4/3] flex justify-center items-center">
+            <img
+                [src]="institucion().images | institucionImagePipe"
+                [alt]="imagenPrincipal()?.altText || traduccion()?.description"
+                class="w-full h-auto object-contain"
+            >
+        </figure> -->
+        <figure
+            class="w-full flex justify-center items-start h-auto md:aspect-[4/3] md:items-center md:justify-center md:col-span-2 lg:col-span-1"
+        >
+            <img
+                [src]="institucion().images | institucionImagePipe"
+                [alt]="imagenPrincipal()?.altText || traduccion()?.description"
+                class="w-full h-32  md:h-auto object-contain"
+            >
+        </figure>
+
+
+    </div>
+</div>
+
+<hr class="my-6 border-t-2 border-gray-200">

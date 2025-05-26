@@ -1,0 +1,11 @@
+@if (institucionResource.isLoading()) {
+<div class="flex justify-center items-center h-screen">
+
+    <span class="loading loading-spinner loading-lg"></span>
+</div>
+}
+
+@if (institucionResource.hasValue()) {
+
+<institucion-page-view [institucion]="institucionResource.value()"></institucion-page-view>
+}

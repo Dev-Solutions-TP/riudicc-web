@@ -7,11 +7,11 @@ import { environment } from 'src/environments/environment';
 const API_URL = environment.baseUrl;
 
 @Pipe({
-    name: 'projectImagePipe',
+    name: 'institucionImagePipe',
 
 })
 
-export class ProjectImagePipe implements PipeTransform {
+export class InstitcionImagePipe implements PipeTransform {
     transform(value: Image | Image[],): any {
 
         if (typeof value === 'string') {
