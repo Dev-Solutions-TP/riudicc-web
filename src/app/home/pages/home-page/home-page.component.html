@@ -5,19 +5,40 @@
 
 
 <!-- Sección: What's News -->
+<!-- <h2 class="text-2xl font-bold mb-4">What's News</h2> -->
 <section>
-    <!-- <h2 class="text-2xl font-bold mb-4">What's News</h2> -->
 
     @if (bannersResponse.hasValue()) {
     <home-carousel [banners]="bannersResponse.value().items"></home-carousel>
 
     }
+</section>
+<section>
     <page-title
         firstWord="What's News"
         secondWord=""
     ></page-title>
     <hr class="mb-6 border-t border-gray-300">
+    @if (noticiasResponse.isLoading()) {
+    <div class="flex justify-center items-center h-screen">
 
+        <span class="loading loading-spinner loading-lg"></span>
+    </div>
+    }
+
+    @if (noticiasResponse.hasValue()) {
+    @for (noticia of noticiasResponse.value().items; track $index) {
+
+
+    <div class="flex flex-col gap-6">
+
+        <noticia-card
+            [noticia]="noticia"
+            [horizontal]="true"
+        ></noticia-card>
+    </div>
+    }
+    }
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Noticia 1 -->
         <article class="p-4 border rounded shadow-sm bg-white">

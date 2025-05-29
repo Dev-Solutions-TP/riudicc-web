@@ -6,9 +6,13 @@ import { NormativaPageComponent } from "./pages/normativa-page/normativa-page.co
 import { SociedaEuPageComponent } from "./pages/sociedad-eu-page/sociedad-eu-page.component";
 import { InstitucionesPageComponent } from "./pages/instituciones/instituciones-page.component";
 import { EventosPagesComponent } from "./pages/eventos-pages/eventos-pages.component";
-import { NoticiasPageComponent } from "./pages/noticias-page/noticias-page.component";
+
 import { NotFoundPageComponent } from "./pages/not-found-page/not-found-page.component";
 import { InstitucionPageComponent } from "./pages/instituciones/pages/institucion/institucion-page.component";
+
+import { NoticiasPageComponent } from "@noticias/noticias-page.component";
+import { NoticiaPageComponent } from "@noticias/pages/noticia-page/noticia-page.component";
+
 
 
 
@@ -62,7 +66,17 @@ export const homeRoutes: Routes = [
             {
                 path: 'news',
                 title: 'Noticias',
-                component: NoticiasPageComponent,
+                children: [
+                    {
+                        path: '',
+                        component: NoticiasPageComponent,
+
+                    },
+                    {
+                        path: ':idSlug',
+                        component: NoticiaPageComponent, // detalle de una institución
+                    }
+                ]
             },
             // {
             //     path: 'news/:id',

@@ -11,12 +11,15 @@
       "@home/*": [
         "./src/app/home/*"
       ],
+      "@noticias/*": [
+        "./src/app/home/pages/noticias-page/*"
+      ],
       "@shared/*": [
         "./src/app/shared/*"
       ],
       "@dashboard/*": [
         "./src/app/admin-dashboard/*"
-      ],
+      ]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,
