@@ -1,5 +1,5 @@
 import { User } from "@auth/interfaces/user.interface";
-import { Image } from "@home/interfaces/image.interface";
+import { ImageEntity } from "@home/interfaces/image.interface";
 import { Enlace } from "@home/interfaces/enlace.interface";
 
 
@@ -15,7 +15,7 @@ export interface SociedadEU {
     id: string;
     slug: string;
     tags: string[];
-    images: Image[];
+    images: ImageEntity[];
     enlaces: Enlace[];
     traducciones: Traduccione[];
     createdBy: User;

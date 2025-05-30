@@ -1,9 +1,11 @@
 import { computed, Signal } from '@angular/core';
-import { Institucion } from '../interfaces/noticia.interface';
+import { NoticiaEntity } from '../interfaces/noticia.interface';
+import { Institucion } from '@home/pages/instituciones/interfaces/aliados.interface';
+
 
 // Traducción según idioma actual
-export function getTraduccion(
-    institucion: Signal<Institucion | undefined>,
+export function getTraduccionNoticia(
+    institucion: Signal<NoticiaEntity | undefined>,
     idiomaActual: Signal<string>
 ) {
     return computed(() => {
@@ -19,8 +21,24 @@ export function getTraduccion(
     });
 }
 
+export function getTraduccionInstitucion(
+    institucion: Signal<Institucion | undefined>,
+    idiomaActual: Signal<string>
+) {
+    return computed(() => {
+        const data = institucion();
+        const lang = idiomaActual();
+        if (!data) return undefined;
+
+        return (
+            data.traducciones.find(t => t.idioma === lang) ??
+            data.traducciones[0]
+        );
+    });
+}
+
 // Imagen principal (puede ajustarse si deseas una lógica más específica)
-export function getImagenPrincipal(institucion: Signal<Institucion | undefined>,) {
+export function getImagenPrincipaNoticia(institucion: Signal<NoticiaEntity | undefined>,) {
     return computed(() => institucion()?.images?.[0]);
 }
 

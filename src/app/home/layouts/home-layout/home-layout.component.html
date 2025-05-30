@@ -1,10 +1,18 @@
 <main class="m-auto flex-grow flex flex-col min-h-screen">
 
-
-
     <home-navbar></home-navbar>
+    @if(router.url === '/') {
+    <div class="animate-fadeIn">
+        <img
+            src="assets/images/riudicc/portada.png"
+            alt="RIUDICC Portada"
+            class="w-full h-auto object-cover"
+        />
+    </div>
+    }
+
     <section class="container mx-auto">
-        <section class="container mx-auto px-4 sm:px-6 md:px-10  py-8">
+        <section class="container mx-auto px-8  md:px-10  py-8">
             <router-outlet></router-outlet>
         </section>
     </section>

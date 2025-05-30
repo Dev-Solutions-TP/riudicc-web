@@ -1,0 +1,109 @@
+<div class="grid grid-cols-1 ">
+
+    <span class="block text-2xl md:text-2xl font-bold text-black">
+        {{ traduccion()?.title }}
+    </span>
+    <div class="block text-lg  text-black">
+        {{ noticia().displayDate | date: 'longDate' }}
+    </div>
+
+    <div class="flex items-center space-x-2 mt-6">
+
+        <p>{{ traduccion()?.contentDescription }}</p>
+    </div>
+
+    <noticia-carousel
+        [images]="noticia().images"
+        class="mt-4"
+    ></noticia-carousel>
+
+    <div class="w-full mt-4 sm:mt-6  mb-4 sm:mb-6 lg:mt-10 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 2xl:px-20 py-6">
+        <article class="prose max-w-none">
+            <div [innerHTML]="traduccion()?.content"></div>
+        </article>
+    </div>
+
+
+    <!-- Bandera -->
+    <div class="flex items-center space-x-2 mt-2">
+        <img
+            [src]="'https://flagcdn.com/w40/' + noticia().paisCode + '.png'"
+            class="w-6 h-4 object-cover rounded-sm"
+            [alt]="noticia().pais"
+        >
+        <span class="text-sm text-gray-500 capitalize">{{ noticia().pais }}</span>
+    </div>
+
+    <!-- Google Maps -->
+    <a
+        class="text-sm text-blue-600 hover:underline mt-2"
+        [href]="'https://www.google.com/maps?q=' + noticia().latitud + ',' + noticia().longitud"
+        target="_blank"
+    >
+        Ver ubicación en Google Maps
+    </a>
+
+
+
+    <section class="mt-10">
+        @if (noticia().enlaces ) {
+
+        <h3 class="text-xl font-semibold mb-4 text-black">Enlaces relacionados</h3>
+
+        <ul class="space-y-3">
+            @for (link of noticia().enlaces; track link.url) {
+            <li>
+                <a
+                    [href]="link.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex items-center space-x-2 text-blue-600 hover:underline"
+                >
+                    <span class="text-xl">
+                        <i [class]="link.label | enlaceIconPipe"></i>
+                    </span>
+
+                    <span>{{ link.label || link.url }}</span>
+                </a>
+            </li>
+            }
+        </ul>
+        }
+    </section>
+
+    <!-- Mostrar instituciones asociadas -->
+    <section class="mt-10 mb-30">
+        @if (noticia().instituciones ) {
+
+        @if (noticia().instituciones!.length > 0) {
+        <!-- <h3 class="text-xl font-semibold mb-4 text-black">Instituciones</h3> -->
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            @for (inst of noticia().instituciones; track inst.id) {
+            <div
+                class="card bg-base-100 shadow-md hover:shadow-xl transition"
+                [routerLink]="['/partners', inst.slug]"
+                style="cursor: pointer;"
+            >
+                <figure class="h-32 bg-white flex justify-center items-center overflow-hidden rounded-t-xl">
+                    <img
+                        [src]="inst.images | imageNamePipe : 'uni'"
+                        [alt]="imagenPrincipal().altText "
+                        class="h-full w-full object-contain p-4"
+                    >
+                </figure>
+                <div class="card-body p-4">
+                    <h4 class="block text-base font-bold text-black">
+                        {{ getTraduccionInstitucion(inst).name }}
+
+                    </h4>
+                </div>
+            </div>
+            }
+        </div>
+        }}
+    </section>
+
+
+
+</div>

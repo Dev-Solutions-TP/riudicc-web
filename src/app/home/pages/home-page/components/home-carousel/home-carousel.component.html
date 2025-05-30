@@ -10,7 +10,7 @@
 
         <div class="swiper-slide">
             <img
-                [src]="banner.image | bannerImagePipe"
+                [src]="banner.image | imageNamePipe: 'ban'"
                 alt="{{getAltText(banner)}}"
                 class="w-full  object-cover"
             >

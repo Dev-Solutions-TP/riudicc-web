@@ -1,0 +1,62 @@
+<div class="card bg-base-100 shadow-md p-4">
+
+
+    @if (swiperReady()) {
+    <!-- Imagen principal -->
+    <div class="w-full aspect-[16/9] mb-4 flex justify-center items-center bg-base-200 rounded-md overflow-hidden">
+        @if (selectedImage()) {
+        <img
+            [src]="selectedImage()! | imageNamePipe: 'not'"
+            [alt]="getAltText(selectedImage()!)"
+            class="max-h-full max-w-full object-contain"
+        >
+        }
+    </div>
+
+    <!-- Carrusel de miniaturas con flechas y paginación -->
+    <div class="w-full flex flex-col items-center gap-1">
+        <!-- Carrusel + flechas -->
+        <div class="flex items-center w-full gap-2 relative h-24 sm:h-28 ">
+
+
+            <!-- Flecha izquierda -->
+            <div class="flex items-center justify-center h-24 sm:h-28">
+                <div class="swiper-button-prev"></div>
+            </div>
+
+            <!-- Miniaturas -->
+            <div
+                class="swiper w-full"
+                #thumbsDiv
+            >
+                <div class="swiper-wrapper">
+                    @for (image of images(); track $index) {
+                    <div
+                        class="swiper-slide p-1 cursor-pointer"
+                        (click)="setSelected(image)"
+                    >
+                        <img
+                            [src]="image | imageNamePipe: 'not'"
+                            [alt]="getAltText(image)"
+                            class="w-full h-20 sm:h-24 object-cover rounded border transition"
+                            [ngClass]="{
+              'border-primary ring-2 ring-primary': isSelected(image),
+              'border-base-300 hover:border-primary': !isSelected(image)
+            }"
+                        >
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Flecha derecha -->
+            <div class="swiper-button-next flex items-center justify-center"></div>
+
+        </div>
+
+        <!-- Espaciado aumentado para los dots -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    }
+</div>

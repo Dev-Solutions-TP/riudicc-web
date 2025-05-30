@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HomeNavbarComponent } from "../../components/home-navbar/home-navbar.component";
 import { AppFooterComponent } from "@shared/components/app-footer/app-footer.component";
 
@@ -8,4 +8,9 @@ import { AppFooterComponent } from "@shared/components/app-footer/app-footer.com
   imports: [RouterOutlet, HomeNavbarComponent, AppFooterComponent],
   templateUrl: './home-layout.component.html',
 })
-export class HomeLayoutComponent { }
+export class HomeLayoutComponent {
+
+  constructor(public router: Router) { }
+
+
+}

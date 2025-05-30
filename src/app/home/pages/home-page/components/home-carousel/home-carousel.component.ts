@@ -14,22 +14,32 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Banner } from '../interfaces/banner.interface';
-import { BannerImagePipe } from '../../pipes/banner-image.pipe';
+import { ImageNamePipe } from '@shared/pipes/image.pipe';
+
 
 
 
 
 @Component({
   selector: 'home-carousel',
-  imports: [BannerImagePipe],
+  imports: [ImageNamePipe],
   templateUrl: './home-carousel.component.html',
-  styles: `
-    .swiper {
-      width: 100%;
-      height: 500px;
-      
-    }
-  `
+  styles: [`
+  
+
+
+  :host ::ng-deep .swiper-button-prev::after,
+  :host ::ng-deep .swiper-button-next::after {
+    font-size: 1.25rem !important; /* cambia el ícono en sí */
+  }
+  :host ::ng-deep .swiper-pagination {
+    position: static !important;
+    transform: none !important;
+
+  }
+  
+`]
+
 })
 export class HomeCarouselComponent implements AfterViewInit {
 
@@ -82,4 +92,9 @@ export class HomeCarouselComponent implements AfterViewInit {
     );
     return traduccion?.altText ?? banner.traducciones[0]?.altText ?? '';
   };
+
+  swiperReady = computed(() => this.banners().length > 0);
+
+
+
 }

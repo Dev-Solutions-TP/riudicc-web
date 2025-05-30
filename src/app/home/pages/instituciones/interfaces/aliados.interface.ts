@@ -1,5 +1,5 @@
 import { User } from "@auth/interfaces/user.interface";
-import { Image } from "@home/interfaces/image.interface";
+import { ImageEntity } from "@home/interfaces/image.interface";
 import { Enlace } from "@home/interfaces/enlace.interface";
 
 export interface InstitucionResponse {
@@ -20,7 +20,7 @@ export interface Institucion {
     ciudad: string;
     latitud: string;
     longitud: string;
-    images: Image[];
+    images: ImageEntity[];
     enlaces: Enlace[];
     traducciones: Traduccione[];
     owner: User;
