@@ -1,7 +1,7 @@
 import { User } from "@auth/interfaces/user.interface";
 import { ImageEntity } from "@home/interfaces/image.interface";
 import { Enlace } from "@home/interfaces/enlace.interface";
-import { Institucion } from "@home/pages/instituciones/interfaces/aliados.interface";
+import { InstitucionEntity } from "@home/pages/instituciones/interfaces/aliados.interface";
 
 export interface NoticiasResponse {
     count: number;
@@ -25,7 +25,7 @@ export interface NoticiaEntity {
     images: ImageEntity[];
     enlaces: Enlace[];
     traducciones: Traduccion[];
-    instituciones: Institucion[];
+    instituciones: InstitucionEntity[];
     owner: User;
     createdBy: User;
     updatedBy: Date;

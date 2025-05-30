@@ -1,9 +1,9 @@
 import { computed, Signal } from '@angular/core';
-import { Institucion } from '../interfaces/aliados.interface';
+import { InstitucionEntity } from '../interfaces/aliados.interface';
 
 // Traducción según idioma actual
 export function getTraduccion(
-    institucion: Signal<Institucion | undefined>,
+    institucion: Signal<InstitucionEntity | undefined>,
     idiomaActual: Signal<string>
 ) {
     return computed(() => {
@@ -20,7 +20,7 @@ export function getTraduccion(
 }
 
 // Imagen principal (puede ajustarse si deseas una lógica más específica)
-export function getImagenPrincipal(institucion: Signal<Institucion | undefined>,) {
+export function getImagenPrincipal(institucion: Signal<InstitucionEntity | undefined>,) {
     return computed(() => institucion()?.images?.[0]);
 }
 

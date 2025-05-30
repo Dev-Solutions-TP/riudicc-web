@@ -5,10 +5,10 @@ import { Enlace } from "@home/interfaces/enlace.interface";
 export interface InstitucionResponse {
     count: number;
     pages: number;
-    items: Institucion[];
+    items: InstitucionEntity[];
 }
 
-export interface Institucion {
+export interface InstitucionEntity {
     createdAt: Date;
     updatedAt: Date;
     id: string;
@@ -16,6 +16,7 @@ export interface Institucion {
     tipo: string;
     slug: string;
     tags: string[];
+    paisCode: string;
     pais: string;
     ciudad: string;
     latitud: string;
@@ -25,7 +26,7 @@ export interface Institucion {
     traducciones: Traduccione[];
     owner: User;
     createdBy: User;
-    updatedBy: null;
+    updatedBy: User;
 }
 
 

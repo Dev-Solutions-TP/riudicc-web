@@ -2,7 +2,7 @@ import { Component, computed, inject, input, LOCALE_ID, signal } from '@angular/
 
 
 import { InstitcionImagePipe } from '../../pipes/instituciones-project-image.pipe';
-import { Institucion } from '../../interfaces/aliados.interface';
+import { InstitucionEntity } from '../../interfaces/aliados.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class InstitucionCardComponent {
 
   currentLocale = signal(inject(LOCALE_ID));
 
-  institucion = input.required<Institucion>();
+  institucion = input.required<InstitucionEntity>();
 
   // currentLocale = signal('es'); // o 'en', o como quieras gestionar el idioma
 

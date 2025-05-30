@@ -5,13 +5,14 @@ import { BannersService } from './services/banner.service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { NoticiasService } from '@home/pages/noticias-page/services/noticia.service';
 import { NoticiaCardComponent } from "../noticias-page/components/noticia-card/noticia-card.component";
+import { RouterLink } from '@angular/router';
 
 
 
 
 @Component({
   selector: 'app-home-page',
-  imports: [PageTitleComponent, HomeCarouselComponent, NoticiaCardComponent],
+  imports: [RouterLink, HomeCarouselComponent, NoticiaCardComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {

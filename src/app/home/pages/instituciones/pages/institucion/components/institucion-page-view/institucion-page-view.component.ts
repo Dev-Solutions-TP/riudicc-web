@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, LOCALE_ID, signal } from '@angular/core';
-import { Institucion } from '@home/pages/instituciones/interfaces/aliados.interface';
+import { InstitucionEntity } from '@home/pages/instituciones/interfaces/aliados.interface';
 import { InstitcionImagePipe } from '@home/pages/instituciones/pipes/instituciones-project-image.pipe';
 import { abrirEnlace, getCountryCode, getImagenPrincipal, getTraduccion } from '@home/pages/instituciones/utils/institucion.utils';
 
@@ -14,7 +14,7 @@ export class InstitucionPageViewComponent {
 
 
   constructor() { }
-  institucion = input.required<Institucion>();
+  institucion = input.required<InstitucionEntity>();
   currentLocale = signal(inject(LOCALE_ID));
 
   traduccion = getTraduccion(this.institucion, this.currentLocale);

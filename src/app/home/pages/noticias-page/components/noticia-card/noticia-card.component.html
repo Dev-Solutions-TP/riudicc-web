@@ -1,30 +1,76 @@
 <div class="animate-fadeIn lg:mx-10">
 
     <!-- Versión horizontal para pantallas md+ -->
-    <div class="hidden md:flex card card-side bg-base-200 shadow-2xl  rounded-xl m-4 h-75">
-
-        <figure class="cursor-pointer w-[30%] h-full flex items-center justify-center bg-white">
-            <a [routerLink]="['/news', noticia().slug]">
-
+    <div
+        class="cursor-pointer hover:shadow-xl shadow-sm transition-shadow duration-300 rounded-xl bg-transparent"
+        [routerLink]="['/news', noticia().slug]"
+    >
+        <div class="hidden md:flex card card-side bg-base-200 hover:shadow-xl rounded-xl h-75">
+            <figure class=" w-[30%] h-full flex items-center justify-center bg-white">
                 <img
                     [src]="noticia().images | noticiaImagePipe"
-                    [alt]="imagenPrincipal()?.altText || traduccion().contentDescription"
+                    [alt]="imagenPrincipal().altText || traduccion().contentDescription"
                     class="h-full w-full object-cover"
                 >
-            </a>
-        </figure>
 
-        <div class="w-[5%]"></div>
+            </figure>
 
-        <div class="card-body w-[65%] p-4 flex flex-col justify-between">
-            <div>
+            <div class="w-[5%]"></div>
+
+            <div class="card-body w-[65%] p-4 flex flex-col justify-between">
+                <div>
+                    <h2
+                        class="card-title font-montserrat text-black hover:underline cursor-pointer"
+                        [routerLink]="['/news', noticia().slug]"
+                    >
+                        {{ traduccion().title }}
+                    </h2>
+                    <p class="line-clamp-3">{{ traduccion().contentDescription}}</p>
+
+                    <div class="flex items-center space-x-2 mt-2">
+                        @if (noticia().paisCode) {
+                        <img
+                            [src]="'https://flagcdn.com/w40/' + noticia().paisCode.toLowerCase() + '.png'"
+                            [alt]="noticia().pais"
+                            class="w-6 h-4 object-cover rounded-sm"
+                        >
+                        } @else {
+                        <span class="text-lg">🌐</span>
+                        }
+                        <span class="text-sm text-gray-500 capitalize">{{ noticia().pais || 'Global' }}</span>
+                    </div>
+                </div>
+
+                <div class="card-actions justify-end">
+                    <button
+                        class="btn  btn-outline btn-primar"
+                        [routerLink]="['/news', noticia().slug]"
+                    >More</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Versión vertical para móvil -->
+        <div class="flex md:hidden card bg-base-200 rounded-xl">
+            <figure class="cursor-pointer">
+                <a [routerLink]="['/news', noticia().slug]">
+
+                    <img
+                        [src]="noticia().images | noticiaImagePipe"
+                        [alt]="traduccion().contentDescription"
+                    >
+                </a>
+            </figure>
+
+            <div class="card-body">
                 <h2
                     class="card-title font-montserrat text-black hover:underline cursor-pointer"
                     [routerLink]="['/news', noticia().slug]"
                 >
                     {{ traduccion().title }}
                 </h2>
-                <p class="line-clamp-3">{{ traduccion().contentDescription}}</p>
+                <p>{{ traduccion().contentDescription }}</p>
 
                 <div class="flex items-center space-x-2 mt-2">
                     @if (noticia().paisCode) {
@@ -38,59 +84,18 @@
                     }
                     <span class="text-sm text-gray-500 capitalize">{{ noticia().pais || 'Global' }}</span>
                 </div>
-            </div>
+                <div class="flex justify-end mt-4">
+                    <button
+                        class="btn btn-sm btn-outline btn-primary"
+                        [routerLink]="['/news', noticia().slug]"
+                    >
+                        More
+                    </button>
+                </div>
 
-            <div class="card-actions justify-end">
-                <button
-                    class="btn  btn-outline btn-primar"
-                    [routerLink]="['/news', noticia().slug]"
-                >More</button>
             </div>
         </div>
+
     </div>
 
-    <!-- Versión vertical para móvil -->
-    <div class="flex md:hidden card bg-base-200 shadow-2xl  rounded-xl m-4">
-        <figure class="cursor-pointer">
-            <a [routerLink]="['/news', noticia().slug]">
-
-                <img
-                    [src]="noticia().images | noticiaImagePipe"
-                    [alt]="traduccion().contentDescription"
-                >
-            </a>
-        </figure>
-
-        <div class="card-body">
-            <h2
-                class="card-title font-montserrat text-black hover:underline cursor-pointer"
-                [routerLink]="['/news', noticia().slug]"
-            >
-                {{ traduccion().title }}
-            </h2>
-            <p>{{ traduccion().contentDescription }}</p>
-
-            <div class="flex items-center space-x-2 mt-2">
-                @if (noticia().paisCode) {
-                <img
-                    [src]="'https://flagcdn.com/w40/' + noticia().paisCode.toLowerCase() + '.png'"
-                    [alt]="noticia().pais"
-                    class="w-6 h-4 object-cover rounded-sm"
-                >
-                } @else {
-                <span class="text-lg">🌐</span>
-                }
-                <span class="text-sm text-gray-500 capitalize">{{ noticia().pais || 'Global' }}</span>
-            </div>
-            <div class="flex justify-end mt-4">
-                <button
-                    class="btn btn-sm btn-outline btn-primary"
-                    [routerLink]="['/news', noticia().slug]"
-                >
-                    More
-                </button>
-            </div>
-
-        </div>
-    </div>
 </div>

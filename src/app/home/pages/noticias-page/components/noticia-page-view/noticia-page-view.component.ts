@@ -6,7 +6,7 @@ import { NoticiaCarouselComponent } from "../noticia-carousel/noticia-carousel.c
 import { InstitcionImagePipe } from "../../../instituciones/pipes/instituciones-project-image.pipe";
 import { ImageNamePipe } from '@shared/pipes/image.pipe';
 import { RouterLink } from '@angular/router';
-import { Institucion } from '@home/pages/instituciones/interfaces/aliados.interface';
+import { InstitucionEntity } from '@home/pages/instituciones/interfaces/aliados.interface';
 import { DatePipe } from '@angular/common';
 import { EnlaceIconPipe } from "../../../../../shared/pipes/icon.pipe";
 
@@ -26,7 +26,7 @@ export class NoticiaPageViewComponent {
 
   imagenPrincipal = computed(() => this.noticia().images?.[0]);
 
-  getTraduccionInstitucion(inst: Institucion) {
+  getTraduccionInstitucion(inst: InstitucionEntity) {
     const lang = this.currentLocale();
     return inst.traducciones.find(t => t.idioma === lang) ?? inst.traducciones[0];
   }

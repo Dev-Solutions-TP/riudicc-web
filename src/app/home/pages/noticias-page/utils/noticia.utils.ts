@@ -1,6 +1,6 @@
 import { computed, Signal } from '@angular/core';
 import { NoticiaEntity } from '../interfaces/noticia.interface';
-import { Institucion } from '@home/pages/instituciones/interfaces/aliados.interface';
+import { InstitucionEntity } from '@home/pages/instituciones/interfaces/aliados.interface';
 
 
 // Traducción según idioma actual
@@ -22,7 +22,7 @@ export function getTraduccionNoticia(
 }
 
 export function getTraduccionInstitucion(
-    institucion: Signal<Institucion | undefined>,
+    institucion: Signal<InstitucionEntity | undefined>,
     idiomaActual: Signal<string>
 ) {
     return computed(() => {

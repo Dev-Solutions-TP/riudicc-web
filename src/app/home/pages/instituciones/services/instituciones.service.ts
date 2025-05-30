@@ -3,7 +3,7 @@ import { inject, Injectable, LOCALE_ID, signal } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Institucion, InstitucionResponse } from '../interfaces/aliados.interface';
+import { InstitucionEntity, InstitucionResponse } from '../interfaces/aliados.interface';
 
 
 
@@ -44,10 +44,10 @@ export class InstitucionesService {
     }
 
 
-    getInstitucionByIdSlug(idSlug: string): Observable<Institucion> {
+    getInstitucionByIdSlug(idSlug: string): Observable<InstitucionEntity> {
 
 
-        return this.http.get<Institucion>(`${API_URL}/instituciones/${idSlug}`, {});
+        return this.http.get<InstitucionEntity>(`${API_URL}/instituciones/${idSlug}`, {});
     }
 
 }
