@@ -24,7 +24,7 @@ export class NoticiasPageComponent {
 
 
   titulosNoticiaPage: Record<'es' | 'en' | 'fr', string> = {
-    es: 'Noticia',
+    es: 'Noticias',
     en: 'News',
     fr: 'Actualité',
   };

@@ -2,6 +2,7 @@ import { Component, computed, inject, input, LOCALE_ID, signal } from '@angular/
 import { RouterLink } from '@angular/router';
 import { SociedadEU } from '../../interfaces/sociedad.interface';
 import { ProjectImagePipe } from '../../pipes/project-image.pipe';
+import { LocalizationService } from '@shared/services/localization.service';
 
 @Component({
   selector: 'project-card',
@@ -12,7 +13,9 @@ export class ProjectCardComponent {
 
   constructor() { }
 
-  currentLocale = signal(inject(LOCALE_ID));
+  private currentLocale = signal(inject(LOCALE_ID));
+  private lang = inject(LocalizationService);
+
 
   proyecto = input.required<SociedadEU>();
 
@@ -31,5 +34,7 @@ export class ProjectCardComponent {
     // Devuelve el primer objeto de imagen o undefined
     return this.proyecto().images?.[0];
   });
+
+  viewMoreText = this.lang.viewMoreText;
 
 }

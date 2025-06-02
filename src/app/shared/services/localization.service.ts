@@ -22,7 +22,7 @@ export class LocalizationService {
     }
 
     // Atajos
-    viewMoreText = this.getText(AppText.app.about, 'More');
+    viewMoreText = this.getText(AppText.app.viewMore, 'More');
     showMapText = this.getText(AppText.app.showMap, 'Show map');
     aboutText = this.getText(AppText.app.about, 'About');
 }

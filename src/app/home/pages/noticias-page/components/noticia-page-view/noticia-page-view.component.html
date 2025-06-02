@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 ">
+<div class="  max-w-[100rem]   px-4  md:px-20  grid grid-cols-1 ">
 
     <span class="block text-2xl md:text-2xl font-bold text-black">
         {{ traduccion()?.title }}
@@ -48,7 +48,7 @@
     <section class="mt-10">
         @if (noticia().enlaces ) {
 
-        <h3 class="text-xl font-semibold mb-4 text-black">Enlaces relacionados</h3>
+        <h3 class="text-xl font-semibold mb-4 text-black">{{enlacesRelacionados()}}</h3>
 
         <ul class="space-y-3">
             @for (link of noticia().enlaces; track link.url) {
@@ -73,10 +73,16 @@
 
     <!-- Mostrar instituciones asociadas -->
     <section class="mt-10 ">
+
+
+
         @if (noticia().instituciones ) {
+
+
 
         @if (noticia().instituciones!.length > 0) {
         <!-- <h3 class="text-xl font-semibold mb-4 text-black">Instituciones</h3> -->
+        <h3 class="text-xl font-semibold mb-4 text-black">{{sociosRelacionados()}}</h3>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             @for (inst of noticia().instituciones; track inst.id) {

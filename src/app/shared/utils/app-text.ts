@@ -21,6 +21,16 @@ export const AppText = {
             en: 'About',
             fr: 'À propos',
         },
+        enlacesRelacionados: {
+            es: 'Enlaces relacionados',
+            en: 'Related links',
+            fr: 'Liens connexes',
+        },
+        sociosRelacionados: {
+            es: 'Socios relacionados',
+            en: 'Related partners',
+            fr: 'Partenaires associés',
+        },
     },
     home: {
         intro: {
@@ -34,4 +44,7 @@ export const AppText = {
             fr: 'Explorez davantage',
         },
     },
+    noticias: {
+
+    }
 } satisfies Record<string, Record<string, AppTextEntry>>;

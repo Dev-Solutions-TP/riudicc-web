@@ -1,7 +1,7 @@
 <div class="animate-fadeIn">
     <!-- Card horizontal (desktop y tablet) -->
     <div class="hidden md:flex card card-side bg-base-100 shadow-sm">
-        <figure>
+        <figure class="w-2/3 h-60 overflow-hidden">
             <!-- [src]="imagenPrincipal() ? 'https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp': 'https://riudicc.org/img/' + imagenPrincipal().url" -->
             <img
                 [src]="proyecto().images | projectImagePipe"
@@ -34,7 +34,7 @@
                 <a
                     class="link link-accent"
                     [routerLink]="['/eu', proyecto().slug]"
-                >Enlace</a>
+                >{{viewMoreText()}}</a>
             </div>
         </div>
     </div>

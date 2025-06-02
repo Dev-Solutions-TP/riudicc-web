@@ -9,7 +9,7 @@
             <figure class="w-[30%] h-full flex items-center justify-center bg-white">
                 <img
                     [src]="institucion().images | institucionImagePipe"
-                    [alt]="imagenPrincipal() || traduccion().description"
+                    [alt]="institucion().images[0].altText"
                     class="h-full w-full object-contain p-4"
                 >
             </figure>
@@ -28,7 +28,7 @@
                     <!-- Banderita -->
                     <div class="flex items-center space-x-2 mt-2">
                         <img
-                            [src]="'https://flagcdn.com/w40/' + getCountryCode(institucion().pais) + '.png'"
+                            [src]="'https://flagcdn.com/w40/' + (institucion().paisCode.toLowerCase()) + '.png'"
                             [alt]="institucion().pais"
                             class="w-6 h-4 object-cover rounded-sm"
                         >
@@ -72,7 +72,7 @@
             <figure class="h-50 overflow-hidden">
                 <img
                     [src]="institucion().images | institucionImagePipe"
-                    [alt]="imagenPrincipal() || traduccion().description"
+                    [alt]="institucion().images[0].altText"
                     class="w-64 h-60 object-contain"
                 >
             </figure>
@@ -82,6 +82,16 @@
                     [routerLink]="['/partners', institucion().slug]"
                 >{{ traduccion().name }}</h2>
                 <p>{{ traduccion().description }}</p>
+                <div class="flex items-center space-x-2 mt-2">
+                    <img
+                        [src]="'https://flagcdn.com/w40/' + (institucion().paisCode.toLowerCase()) + '.png'"
+                        [alt]="institucion().pais"
+                        class="w-6 h-4 object-cover rounded-sm"
+                    >
+                    <span class="text-sm text-gray-500 capitalize">{{ institucion().pais }}</span>
+                    <!-- Enlace a Google Maps -->
+
+                </div>
                 <div class="flex justify-end">
                     <button
                         class="btn btn-primary"

@@ -1,84 +1,100 @@
-<nav
-    class="navbar bg-base-100/90 shadow-xs backdrop-blur-lg justify-center items-center py-2 md:px-10 px-5 z-50 relative">
-    <div class="navbar-start">
-        <div class="dropdown">
-            <button
-                aria-label="button"
-                tabindex="0"
-                role="button"
-                class="btn btn-ghost lg:hidden"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+<header
+    id="page-header"
+    class="fixed inset-x-0 top-0 z-30 flex flex-none items-center border-b border-secondary-100 bg-white/95 backdrop-blur-sm dark:border-secondary-800 dark:bg-secondary-900/90 "
+>
+    <nav class="navbar bg-transparent shadow-xs  justify-center items-center py-2 md:px-10 px-5 z-50 relative">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <button
+                    aria-label="button"
+                    tabindex="0"
+                    role="button"
+                    class="btn btn-ghost lg:hidden"
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h8m-8 6h16"
-                    ></path>
-                </svg>
-            </button>
-            <ul class="menu dropdown-content menu-md z-50 mt-3 w-52 gap-2 rounded-box bg-base-100 p-2 shadow-sm">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h8m-8 6h16"
+                        ></path>
+                    </svg>
+                </button>
+                <ul class="menu dropdown-content menu-md z-50 mt-3 w-52 gap-2 rounded-box bg-base-100 p-2 shadow-sm">
 
 
-                @for (route of homeRoutes; track route.path) {
-                <li><a
-                        [routerLink]="route.path"
-                        routerLinkActive="text-secondary"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        s
-                        class="btn btn-ghost font-montserrat"
-                    > {{ getTitle(route.key) }}</a></li>
-                }
-            </ul>
-        </div>
-        <a routerLink="/">
-            <img
-                src="assets/images/riudicc/logo.png"
-                alt="RIUDICC Logo"
-                class="h-15 w-auto"
-            />
-        </a>
-    </div>
-    <div class="navbar-center hidden lg:flex">
-
-
-        @for (route of homeRoutes; track route.path) {
-
-        <ul class="menu menu-horizontal px-1 ">
+                    @for (route of homeRoutes; track route.path) {
+                    <li><a
+                            [routerLink]="route.path"
+                            routerLinkActive="text-secondary"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            s
+                            class="btn btn-ghost font-montserrat"
+                        > {{ getTitle(route.key) }}</a></li>
+                    }
+                </ul>
+            </div>
             <a
-                [routerLink]="route.path"
-                routerLinkActive="text-secondary"
-                [routerLinkActiveOptions]="{ exact: true }"
-                class="hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+                class="hidden lg:flex"
+                routerLink="/"
             >
-                {{getTitle(route.key)}}
+                <img
+                    src="assets/images/riudicc/logo.png"
+                    alt="RIUDICC Logo"
+                    class="h-15 w-auto"
+                />
             </a>
-        </ul>
-        }
+        </div>
+        <div class="navbar-center flex lg:hidden">
+            <a routerLink="/">
+                <img
+                    src="assets/images/riudicc/logo.png"
+                    alt="RIUDICC Logo"
+                    class="h-15 w-auto"
+                />
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
 
-    </div>
-    <div class="navbar-end">
 
-        <button
-            class="btn btn-sm btn-outline"
-            (click)="toggleLocale()"
-        >
-            {{ localeService.getLocale | uppercase }}
-            <span class="ml-2">
-                @if (localeService.getLocale === 'es') {
-                <!-- Ejemplo: emoji de bandera o SVG -->
-                <span>🇪🇸</span>
-                }
-                @if (localeService.getLocale === 'en') {
-                <span>🇬🇧</span>
-                }
-            </span>
-        </button>
-    </div>
-</nav>
+            @for (route of homeRoutes; track route.path) {
+
+            <ul class="menu menu-horizontal px-1 ">
+                <a
+                    [routerLink]="route.path"
+                    routerLinkActive="text-secondary"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+                >
+                    {{getTitle(route.key)}}
+                </a>
+            </ul>
+            }
+
+        </div>
+        <div class="navbar-end">
+
+            <button
+                class="btn btn-sm btn-outline rounded-lg"
+                (click)="toggleLocale()"
+            >
+                {{ localeService.getLocale | uppercase }}
+                <span class="ml-2">
+                    @if (localeService.getLocale === 'es') {
+                    <!-- Ejemplo: emoji de bandera o SVG -->
+                    <span>🇪🇸</span>
+                    }
+                    @if (localeService.getLocale === 'en') {
+                    <span>🇬🇧</span>
+                    }
+                </span>
+            </button>
+        </div>
+    </nav>
+</header>

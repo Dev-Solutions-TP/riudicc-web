@@ -9,6 +9,8 @@ import { RouterLink } from '@angular/router';
 import { InstitucionEntity } from '@home/pages/instituciones/interfaces/aliados.interface';
 import { DatePipe } from '@angular/common';
 import { EnlaceIconPipe } from "../../../../../shared/pipes/icon.pipe";
+import { LocalizationService } from '@shared/services/localization.service';
+import { AppText } from '@shared/utils/app-text';
 
 @Component({
   selector: 'noticia-page-view',
@@ -19,7 +21,11 @@ export class NoticiaPageViewComponent {
 
 
   noticia = input.required<NoticiaEntity>();
-  currentLocale = signal(inject(LOCALE_ID));
+  private currentLocale = signal(inject(LOCALE_ID));
+
+  private lang = inject(LocalizationService);
+
+
 
 
   traduccion = getTraduccionNoticia(this.noticia, this.currentLocale);
@@ -31,7 +37,8 @@ export class NoticiaPageViewComponent {
     return inst.traducciones.find(t => t.idioma === lang) ?? inst.traducciones[0];
   }
 
+  enlacesRelacionados = this.lang.getText(AppText.app.enlacesRelacionados);
+  sociosRelacionados = this.lang.getText(AppText.app.sociosRelacionados);
+
 
 }
-
-

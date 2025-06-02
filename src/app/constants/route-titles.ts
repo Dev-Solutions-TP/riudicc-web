@@ -4,5 +4,6 @@ export const ROUTE_TITLES: Record<string, { es: string, en: string }> = {
     regulations: { es: 'Normativa', en: 'Regulations' },
     eu: { es: 'Sociedad Europea', en: 'European Society' },
     partners: { es: 'Aliados Estratégicos', en: 'Strategic Partners' },
+    news: { es: 'Noticias', en: 'News' },
     // events y news si los quieres mostrar también aquí, añade sus keys
 };
