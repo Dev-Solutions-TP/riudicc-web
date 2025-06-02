@@ -1,0 +1,127 @@
+# Proyecto: riudicc_web (Angular)
+
+## Descripción General
+Aplicación web desarrollada en Angular para la red universitaria RIUDICC. Incluye páginas informativas, noticias, eventos, instituciones y componentes personalizados. Utiliza daisyUI 5 y Tailwind CSS 4 para el diseño visual, con un tema claro personalizado basado en la identidad visual de la organización.
+
+## Versión de Angular
+- Angular v19 
+
+## Estructura Principal
+- **src/app/**
+  - **home/pages/**: Páginas principales (home, about, eventos, instituciones, noticias, etc.)
+  - **home/components/**: Componentes reutilizables (navbar, paginación, título de página, etc.)
+  - **shared/**: Componentes y servicios compartidos (footer, pipes, servicios de localización, etc.)
+  - **constants/**: Constantes globales (títulos de rutas, etc.)
+  - **environments/**: Configuración de entornos.
+- **public/assets/**: Recursos estáticos (imágenes, fuentes, etc.)
+- **styles.css**: Configuración de Tailwind CSS, daisyUI y tema personalizado.
+- **index.html**: Punto de entrada de la app, define el tema activo.
+
+## Manejo de rutas
+- Se utiliza el sistema de rutas de Angular (`app.routes.ts`, `home.routes.ts`, etc.).
+- Las rutas están organizadas por módulos y páginas, usando lazy loading para optimizar el rendimiento.
+- Ejemplo de definición de rutas:
+```ts
+// src/app/home/home.routes.ts
+import { Routes } from '@angular/router';
+export const routes: Routes = [
+  { path: '', component: HomePageComponent },
+  { path: 'about', component: AboutPageComponent },
+  { path: 'instituciones', component: InstitucionesPageComponent },
+  // ...otras rutas
+];
+```
+
+## Ejemplo de entidad, servicio y manejo de idioma
+### Entidad (interface)
+```ts
+// src/app/home/interfaces/institucion.interface.ts
+export interface Institucion {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  pais: string;
+  logoUrl?: string;
+  // ...otros campos
+}
+```
+
+### Servicio
+```ts
+// src/app/home/services/instituciones.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Institucion } from '../interfaces/institucion.interface';
+
+@Injectable({ providedIn: 'root' })
+export class InstitucionesService {
+  private apiUrl = '/api/instituciones';
+
+  constructor(private http: HttpClient) {}
+
+  getInstituciones(): Observable<Institucion[]> {
+    return this.http.get<Institucion[]>(this.apiUrl);
+  }
+
+  getInstitucionById(id: string): Observable<Institucion> {
+    return this.http.get<Institucion>(`${this.apiUrl}/${id}`);
+  }
+}
+```
+
+### Manejo de idioma
+- Se utiliza un servicio de localización en `shared/services/locale.service.ts`.
+- El idioma se gestiona a nivel de aplicación y se puede cambiar dinámicamente.
+- Ejemplo de uso:
+```ts
+// src/app/shared/services/locale.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable({ providedIn: 'root' })
+export class LocaleService {
+  private currentLang = 'es';
+
+  setLang(lang: string) {
+    this.currentLang = lang;
+    // lógica para actualizar traducciones
+  }
+
+  getLang(): string {
+    return this.currentLang;
+  }
+}
+```
+
+## Tecnologías y librerías
+- **Angular**: Framework principal.
+- **Tailwind CSS 4**: Utilidades CSS.
+- **daisyUI 5**: Componentes UI y sistema de temas.
+- **Montserrat**: Fuente principal personalizada.
+
+## Tema personalizado (daisyUI)
+- Tema claro (light) con color principal `rgb(38, 34, 98)` (azul/violeta oscuro).
+- Colores secundarios: `rgb(236, 106, 101)` (coral) y `rgb(245, 195, 81)` (amarillo dorado).
+- Fondo de cards y superficies: `#f5f5fa`.
+- Colores de feedback (info, success, warning, error) personalizados.
+- Bordes y radios adaptados a la identidad visual.
+
+## Accesibilidad y SEO
+- Uso de etiquetas semánticas (`section`, `article`, `nav`, etc.).
+- Uso de `aria-labelledby` y encabezados claros para mejorar accesibilidad.
+- Estructura de rutas y títulos optimizada para SEO.
+
+## Notas de desarrollo
+- No se usa `tailwind.config.js` (Tailwind v4).
+- El tema se define y personaliza en `styles.css` usando `@plugin "daisyui/theme"`.
+- El atributo `data-theme` en `<html>` debe coincidir con el nombre del tema definido.
+- Para personalizar el color de hover de los botones, se recomienda usar utilidades Tailwind o CSS adicional.
+
+## Buenas prácticas
+- Mantener la semántica HTML y la accesibilidad.
+- Usar solo utilidades y clases de daisyUI/Tailwind para estilos.
+- Personalizar el tema solo desde `styles.css`.
+- Mantener la estructura modular de Angular.
+
+---
+Este archivo resume la configuración, estructura y convenciones del proyecto `riudicc_web` para referencia rápida de desarrolladores y LLMs.

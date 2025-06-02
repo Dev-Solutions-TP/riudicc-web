@@ -2,11 +2,54 @@
 
 @plugin "@tailwindcss/typography";
 
+@plugin "daisyui";
 
-/* themes: light --default, dark --prefersdark; */
-@plugin "daisyui" {
-    themes: light --default;
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    prefersdark: false;
+    color-scheme: light;
 
+
+
+
+    --color-base-content: rgb(38, 34, 98);
+
+    --color-primary: rgb(38, 34, 98);
+    --color-primary-content: #fff;
+
+    --color-secondary: rgb(236, 106, 101);
+    --color-secondary-content: #fff;
+
+    --color-accent: rgb(245, 195, 81);
+    --color-accent-content: rgb(38, 34, 98);
+
+    --color-neutral: #f5f5fa;
+    --color-neutral-content: rgb(38, 34, 98);
+
+    --color-info: #38bdf8;
+    --color-info-content: #fff;
+
+    --color-success: #22c55e;
+    --color-success-content: #fff;
+
+    --color-warning: rgb(245, 195, 81);
+    --color-warning-content: rgb(38, 34, 98);
+
+    --color-error: rgb(236, 106, 101);
+    --color-error-content: #fff;
+
+    --radius-selector: 1rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+
+    --border: 1px;
+
+    --depth: 1;
+    --noise: 0;
 }
 
 @theme {

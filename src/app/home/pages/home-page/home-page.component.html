@@ -1,27 +1,39 @@
-<section aria-labelledby="about-riudicc">
+<div
+    class="relative flex max-w-[100rem] flex-col-reverse items-center justify-center gap-10 p-4 md:gap-20 md:p-20 xl:flex-row-reverse">
     <div>
-        <h2
-            id="about-riudicc"
-            class="mt-8 md:mt-20 text-left font-['Roboto'] racking-wide"
-        >
-            <span class="block text-4xl md:text-6xl font-light text-gray-500">
-                {{about()}}
-            </span>
+        <h2 class="font-title text-center leading-none md:text-start">
+            <span class="text-[clamp(2rem,8vw,4rem)] font-black">RIUDICC</span> <br>
+            <div class="h-4 md:h-2"></div>
+
+            <span class="text-[clamp(2rem,8vw,4rem)] font-light">{{siglas()}}</span>
         </h2>
-        <hr class="mb-5 md:mb-10 border-t border-gray-500">
+        <div class="h-8 md:h-12"></div>
+
+        <p class="text-base-content/70 font-title mb-6 text-center font md:text-3xl md:text-start">
+            {{aboutContenido()}}</p>
+
+        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start"></p>
+        <div class="h-4 md:h-10"></div>
+        <div class="flex w-full justify-center xl:justify-start"><a
+                data-sveltekit-preload-data=""
+                [routerLink]="['/about']"
+                class="btn btn-lg btn-wide btn-outline group"
+            >{{about()}}<svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="hidden h-6 w-6 transition-transform duration-300 group-hover:translate-x-1 md:inline-block rtl:rotate-180 group-hover:rtl:-translate-x-1"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                    ></path>
+                </svg></a></div>
     </div>
-    <div class="mx-auto max-w-5xl  text-justify space-y-6 text-2lg md:text-4xl text-gray-700 ">
-
-        <p>
-            {{aboutContenido()}}
-        </p>
-    </div>
-</section>
-
-
-
-
-
+</div>
 
 
 <section
@@ -35,49 +47,51 @@
 
     }
 </section>
-<section aria-labelledby="news-section">
 
+
+<section aria-labelledby="news-section ">
     <div>
 
-        <h2
-            id="news-title"
-            class="mt-10  md:mt-20 text-left font-['Roboto'] tracking-wide"
-        >
-            <span class="block text-4xl md:text-6xl font-light text-gray-500">
-                {{noticias()}}
-            </span>
-        </h2>
-        <hr class="mb-6 md:mb-10 border-t border-gray-300">
-    </div>
-    @if (noticiasResponse.isLoading()) {
-    <div class="flex justify-center items-center h-screen">
+        <div class="mt-10  md:mt-20">
 
-        <span class="loading loading-spinner loading-lg"></span>
-    </div>
-    }
+            <h2
+                id="news-title"
+                class="relative flex max-w-[100rem]   text-left font-['Roboto'] tracking-wide"
+            >
+                <span class="block text-4xl md:text-6xl font-light text-gray-500">
+                    {{noticias()}}
+                </span>
+            </h2>
+            <hr class="mb-6 md:mb-10 border-t border-gray-300">
+        </div>
+        @if (noticiasResponse.isLoading()) {
+        <div class="flex justify-center items-center h-screen">
 
-    @if (noticiasResponse.hasValue()) {
-    <div class="flex flex-col gap-8">
-        @for (noticia of noticiasResponse.value().items; track $index) {
-
-
-
-        <noticia-card
-            [noticia]="noticia"
-            [horizontal]="true"
-        ></noticia-card>
+            <span class="loading loading-spinner loading-lg"></span>
+        </div>
         }
-    </div>
-    }
 
-    <div class="mt-10 text-right">
-        <div class="flex justify-center">
-            <button
-                class="btn btn-primary btn-lg
-            
-            "
-                [routerLink]="['/news']"
-            >More news</button>
+        @if (noticiasResponse.hasValue()) {
+        <div class="flex flex-col gap-8">
+            @for (noticia of noticiasResponse.value().items; track $index) {
+
+
+
+            <noticia-card
+                [noticia]="noticia"
+                [horizontal]="true"
+            ></noticia-card>
+            }
+        </div>
+        }
+
+        <div class="mt-10 text-right">
+            <div class="flex justify-center">
+                <button
+                    class="btn btn-primary btn-lg font-semibold text-white rounded-full px-4 py-2"
+                    [routerLink]="['/news']"
+                >More news</button>
+            </div>
         </div>
     </div>
 </section>

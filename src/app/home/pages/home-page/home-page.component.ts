@@ -38,7 +38,7 @@ export class HomePageComponent {
 
 
   titulosNoticiaPage: Record<'es' | 'en' | 'fr', string> = {
-    es: 'Nosotros',
+    es: 'Sobre nosotros',
     en: 'About Us',
     fr: 'À propos de nous',
   };
@@ -47,12 +47,22 @@ export class HomePageComponent {
     const locale = this.currentLocale() as 'es' | 'en' | 'fr';
     return this.titulosNoticiaPage[locale] ?? 'News';
   });
+  siglasRiudicc: Record<'es' | 'en' | 'fr', string> = {
+    es: 'Red Internacional de Universidades para el Desarrollo Inclusivo y el Intercambio Científico y Cultural',
+    en: 'International Network of Universities for Inclusive Development and Scientific and Cultural Exchange',
+    fr: 'Réseau international des universités pour le développement inclusif et l\'échange scientifique et culturel',
+  };
+
+  siglas = computed(() => {
+    const locale = this.currentLocale() as 'es' | 'en' | 'fr';
+    return this.siglasRiudicc[locale] ?? 'News';
+  });
 
 
   aboutContenidoText: Record<'es' | 'en' | 'fr', string> = {
-    es: 'RIUDICC es la Red Internacional de Universidades para el Desarrollo Inclusivo y el Intercambio Científico y Cultural, una iniciativa cofinanciada por la Unión Europea, conformada por diez Instituciones de Educación Superior provenientes de Europa, América Latina y el Caribe.',
-    en: 'RIUDICC is the International Network of Universities for Inclusive Development and Scientific and Cultural Exchange, an initiative co-financed by the European Union, made up of ten Higher Education Institutions from Europe, Latin America and the Caribbean.',
-    fr: 'RIUDICC est le Réseau international des universités pour le développement inclusif et l\'échange scientifique et culturel, une initiative cofinancée par l\'Union européenne, composée de dix établissements d\'enseignement supérieur provenant d\'Europe, d\'Amérique latine et des Caraïbes.',
+    es: 'Una iniciativa cofinanciada por la Unión Europea, conformada por diez Instituciones de Educación Superior provenientes de Europa, América Latina y el Caribe.',
+    en: 'A European Union co-funded initiative, made up of ten Higher Education Institutions from Europe, Latin America, and the Caribbean.',
+    fr: 'Une initiative cofinancée par l\'Union européenne, composée de dix établissements d\'enseignement supérieur d\'Europe, d\'Amérique latine et des Caraïbes.',
   };
 
   aboutContenido = computed(() => {
