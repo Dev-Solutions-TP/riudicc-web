@@ -10,6 +10,7 @@ export const AppText = {
             es: 'Ver más',
             en: 'More',
             fr: 'Voir plus',
+
         },
         showMap: {
             es: 'Ver mapa',
