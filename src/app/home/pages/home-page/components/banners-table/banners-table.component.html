@@ -1,0 +1,76 @@
+<div class="overflow-x-auto mb-10 pb-10">
+  <table class="table">
+    <!-- head -->
+    <thead class=" text-white">
+      <tr>
+        <!-- <th>
+          <label>
+            <input
+              type="checkbox"
+              class="checkbox"
+            />
+          </label>
+        </th> -->
+        <th>Tittle</th>
+        <th>Date</th>
+        <th>Slug SEO</th>
+        <th>State</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+      @for (banner of banners(); track banner.id) {
+
+      <tr>
+        <!-- <th>
+          <label>
+            <input
+              type="checkbox"
+              class="checkbox"
+            />
+          </label>
+        </th> -->
+        <td>
+          <div class="flex items-center gap-3">
+            <div class="avatar">
+              <div class="mask mask-squircle h-12 w-12">
+                <img
+                  [src]="banner.image | imageNamePipe: 'ban'"
+                  [alt]="banner.traducciones[0].altText"
+                />
+              </div>
+            </div>
+            <div>
+              <a
+                [routerLink]="['/admin/banners', banner.id]"
+                class="font-bold hover:text-accent transition-colors duration-300"
+              > {{ banner.traducciones[0].altText }}</a>
+
+
+            </div>
+          </div>
+        </td>
+        <td>
+          {{ banner.createdAt | date: 'longDate' }}
+        </td>
+        <td>
+          {{ banner.slug }}
+        </td>
+        <td>
+          {{ banner.activo ? 'Activo' : 'Inactivo' }}
+        </td>
+        <th>
+          <a
+            [routerLink]="['/admin/banners', banner.id]"
+            class="btn btn-ghost text-accent btn-xs"
+          >
+            Details
+          </a>
+        </th>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

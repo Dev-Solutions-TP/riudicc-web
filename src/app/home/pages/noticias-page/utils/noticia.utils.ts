@@ -4,6 +4,18 @@ import { InstitucionEntity } from '@home/pages/instituciones/interfaces/aliados.
 
 
 // Traducción según idioma actual
+
+export function getTraduccionNoticiaFromEntity(
+    noticia: NoticiaEntity,
+    idioma: string
+) {
+    return (
+        noticia.traducciones.find(t => t.idioma === idioma) ??
+        noticia.traducciones[0]
+    );
+}
+
+
 export function getTraduccionNoticia(
     institucion: Signal<NoticiaEntity | undefined>,
     idiomaActual: Signal<string>

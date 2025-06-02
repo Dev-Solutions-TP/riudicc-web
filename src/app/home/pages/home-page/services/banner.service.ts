@@ -3,7 +3,7 @@ import { inject, Injectable, LOCALE_ID, signal } from '@angular/core';
 
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { BannersResponse } from '../components/interfaces/banner.interface';
+import { BannersResponse } from '../interfaces/banner.interface';
 
 
 

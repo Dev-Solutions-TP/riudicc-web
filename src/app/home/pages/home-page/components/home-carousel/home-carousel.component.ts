@@ -13,7 +13,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Banner } from '../interfaces/banner.interface';
+import { Banner } from '../../interfaces/banner.interface';
 import { ImageNamePipe } from '@shared/pipes/image.pipe';
 
 

@@ -40,7 +40,7 @@ export class LogiPageComponent {
 
       console.log('Login exitoso:', isAuthenticated);
       if (isAuthenticated) {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/admin');
         return;
       }
 
