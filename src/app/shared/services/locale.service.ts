@@ -18,6 +18,10 @@ export class LocaleService {
 
 
 
+  get localeSignal() {
+    return this.currentLocale;
+  }
+
   get getLocale() {
     return this.currentLocale();
   }

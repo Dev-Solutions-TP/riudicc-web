@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
   {
     provide: LOCALE_ID,
     deps: [LocaleService],
-    useFactory: (LocaleService: LocaleService) => LocaleService.getLocale
+    useFactory: (localeService: LocaleService) => localeService.getLocale
   }
 
   ]

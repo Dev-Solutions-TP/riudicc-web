@@ -84,4 +84,15 @@ export class HomePageComponent {
   });
 
 
+  masNoticias: Record<'es' | 'en' | 'fr', string> = {
+    es: 'Más noticias',
+    en: 'More news',
+    fr: 'Plus de nouvelles',
+  };
+
+  moreNews = computed(() => {
+    const locale = this.currentLocale() as 'es' | 'en' | 'fr';
+    return this.masNoticias[locale] ?? 'News';
+  });
+
 }

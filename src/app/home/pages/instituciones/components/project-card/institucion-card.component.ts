@@ -4,6 +4,8 @@ import { Component, computed, inject, input, LOCALE_ID, signal } from '@angular/
 import { InstitcionImagePipe } from '../../pipes/instituciones-project-image.pipe';
 import { InstitucionEntity } from '../../interfaces/aliados.interface';
 import { RouterLink } from '@angular/router';
+import { LocalizationService } from '@shared/services/localization.service';
+
 
 @Component({
   selector: 'institucion-card',
@@ -12,18 +14,21 @@ import { RouterLink } from '@angular/router';
 })
 export class InstitucionCardComponent {
 
+
   constructor() { }
 
-  currentLocale = signal(inject(LOCALE_ID));
+  private locale = signal(inject(LOCALE_ID));
+  private lang = inject(LocalizationService);
+
 
   institucion = input.required<InstitucionEntity>();
 
-  // currentLocale = signal('es'); // o 'en', o como quieras gestionar el idioma
+  // localet = signal('es'); // o 'en', o como quieras gestionar el idioma
 
   // Obtiene la traducción preferida según idiomaActual, sino la primera
   traduccion = computed(() => {
     const actual = this.institucion().traducciones.find(
-      t => t.idioma === this.currentLocale()
+      t => t.idioma === this.locale()
     );
 
     return actual ?? this.institucion().traducciones[0];
@@ -50,5 +55,10 @@ export class InstitucionCardComponent {
 
     return mapping[pais.trim()]?.toLowerCase() || 'un'; // 'un' fallback = unknown
   }
+
+  viewMoreText = this.lang.viewMoreText;
+  showMapText = this.lang.showMapText;
+
+
 
 }

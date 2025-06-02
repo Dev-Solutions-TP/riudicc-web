@@ -3,6 +3,8 @@ import { NoticiaEntity } from '../../interfaces/noticia.interface';
 import { NoticiaImagePipe } from '../../pipes/noticia-project-image.pipe';
 import { RouterLink } from '@angular/router';
 
+import { LocalizationService } from '@shared/services/localization.service';
+
 @Component({
   selector: 'noticia-card',
   imports: [RouterLink, NoticiaImagePipe],
@@ -11,7 +13,11 @@ import { RouterLink } from '@angular/router';
 export class NoticiaCardComponent {
 
 
+
   private locale = signal(inject(LOCALE_ID));
+  private lang = inject(LocalizationService);
+
+
   noticia = input.required<NoticiaEntity>();
   horizontal = input(false); // true = imagen izquierda, false = imagen abajo
 
@@ -22,6 +28,8 @@ export class NoticiaCardComponent {
   });
 
   imagenPrincipal = computed(() => this.noticia().images?.[0]);
+
+  viewMoreText = this.lang.viewMoreText;
 
 
 

@@ -12,7 +12,8 @@
         <p class="text-base-content/70 font-title mb-6 text-center font md:text-3xl md:text-start">
             {{aboutContenido()}}</p>
 
-        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start"></p>
+        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start">
+        </p>
         <div class="h-4 md:h-10"></div>
         <div class="flex w-full justify-center xl:justify-start"><a
                 data-sveltekit-preload-data=""
@@ -36,6 +37,7 @@
 </div>
 
 
+
 <section
     aria-labelledby="
             banners-section"
@@ -50,81 +52,56 @@
 
 
 <section aria-labelledby="news-section ">
-    <div>
 
-        <div class="mt-10  md:mt-20">
-
-            <h2
-                id="news-title"
-                class="relative flex max-w-[100rem]   text-left font-['Roboto'] tracking-wide"
-            >
-                <span class="block text-4xl md:text-6xl font-light text-gray-500">
-                    {{noticias()}}
-                </span>
-            </h2>
-            <hr class="mb-6 md:mb-10 border-t border-gray-300">
-        </div>
-        @if (noticiasResponse.isLoading()) {
-        <div class="flex justify-center items-center h-screen">
-
-            <span class="loading loading-spinner loading-lg"></span>
-        </div>
-        }
-
-        @if (noticiasResponse.hasValue()) {
-        <div class="flex flex-col gap-8">
-            @for (noticia of noticiasResponse.value().items; track $index) {
+    <div class=" max-w-[100rem] mt-10 md:mt-20  p-4  md:p-20 ">
+        <div>
 
 
+            <div>
 
-            <noticia-card
-                [noticia]="noticia"
-                [horizontal]="true"
-            ></noticia-card>
-            }
-        </div>
-        }
-
-        <div class="mt-10 text-right">
-            <div class="flex justify-center">
-                <button
-                    class="btn btn-primary btn-lg font-semibold text-white rounded-full px-4 py-2"
-                    [routerLink]="['/news']"
-                >More news</button>
+                <h2
+                    id="news-title"
+                    class="   text-left font-['Roboto'] tracking-wide"
+                >
+                    <span class="block text-4xl md:text-6xl font-light font-title">
+                        {{noticias()}}
+                    </span>
+                </h2>
+                <hr class="mb-6 md:mb-10 border-t border-gray-300">
             </div>
+            @if (noticiasResponse.isLoading()) {
+            <div class="flex justify-center items-center h-screen">
+
+                <span class="loading loading-spinner loading-lg"></span>
+            </div>
+            }
+
+            @if (noticiasResponse.hasValue()) {
+            <div class="flex flex-col gap-8">
+                @for (noticia of noticiasResponse.value().items; track $index) {
+
+
+
+                <noticia-card
+                    [noticia]="noticia"
+                    [horizontal]="true"
+                ></noticia-card>
+                }
+            </div>
+            }
+
+
+            <div class="flex w-full justify-center mt-10">
+
+                <a
+                    data-sveltekit-preload-data=""
+                    [routerLink]="['/news']"
+                    class="btn  btn-wide btn-lg btn-primary"
+                >{{moreNews()}}</a>
+            </div>
+
+
+
         </div>
-    </div>
-</section>
-
-<!-- Sección: Events -->
-<section>
-
-    <div>
-
-        <h2
-            id="news-title"
-            class="mt-10  md:mt-20 text-left font-['Roboto'] tracking-wide"
-        >
-            <span class="block text-4xl md:text-5xl font-light text-gray-500">
-                Events
-            </span>
-        </h2>
-        <hr class="mb-6 border-t border-gray-300">
-    </div>
-
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <article class="p-4 border rounded shadow-sm bg-white">
-            <h3 class="font-semibold text-lg">Evento Genérico 1</h3>
-            <p class="text-sm text-gray-600">Descripción breve del evento próximo.</p>
-        </article>
-        <article class="p-4 border rounded shadow-sm bg-white">
-            <h3 class="font-semibold text-lg">Evento Genérico 2</h3>
-            <p class="text-sm text-gray-600">Otra descripción breve del evento.</p>
-        </article>
-    </div>
-
-    <div class="mt-4 text-right">
-        <button class="btn btn-outline btn-primary">More events</button>
     </div>
 </section>

@@ -1,15 +1,18 @@
 <page-title
-    firstWord="About"
+    firstWord="{{about()}}"
     secondWord="RIUDICC"
 ></page-title>
 
-<section aria-labelledby="about-riudicc">
+<section
+    aria-labelledby="about-riudicc"
+    class=" max-w-[100rem]  px-4  md:px-20"
+>
     <div class="mb-6 md:mb-15">
         <h2
             id="about-riudicc"
             class="mt-10 md:mt-20 text-left font-['Roboto'] tracking-wide"
         >
-            <span class="text-justify block text-2xl md:text-3xl font-light text-gray-500">
+            <span class="text-justify block text-2xl md:text-3xl font-light text-base-content/70">
                 {{aboutContenido()}}
             </span>
         </h2>
@@ -18,15 +21,11 @@
 
 
     <div
-        class="mx-auto max-w-5xl  text-justify space-y-6 text-lg md:text-2xl text-gray-700"
+        class="mx-auto  text-justify space-y-6 text-lg md:text-2xl text-gray-700"
         [innerHTML]="aboutContenidoLarge()"
     ></div>
 
-    <div
-        class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start"
-        [innerHTML]="aboutContenidoLarge()"
-    >
-    </div>
+
 
 
 
@@ -88,7 +87,7 @@
 </section>
 
 
-<div
+<!-- <div
     class="relative flex max-w-[100rem] flex-col-reverse items-center justify-center gap-10 p-4 md:gap-20 md:p-20 xl:flex-row-reverse">
     <div>
         <h2 class="font-title text-center leading-none xl:text-start"><span
@@ -97,10 +96,10 @@
             <span class="text-[clamp(2rem,8vw,4rem)] font-light">Works everywhere.</span>
         </h2>
         <div class="h-10"></div>
-        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start"><!---->daisyUI
-            is a plugin for Tailwind CSS. It works on all JS frameworks and doesn't need a JS bundle file.<!----></p>
-        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start"><!---->Install
-            daisyUI as a dev dependency and use the class names just like any other Tailwind CSS class name.<!----></p>
+        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start">daisyUI
+            is a plugin for Tailwind CSS. It works on all JS frameworks and doesn't need a JS bundle file.</p>
+        <p class="text-base-content/70 font-title mb-6 text-center font-light md:text-3xl xl:text-start">Install
+            daisyUI as a dev dependency and use the class names just like any other Tailwind CSS class name.</p>
         <div class="h-10"></div>
         <div class="flex w-full justify-center xl:justify-start"><a
                 data-sveltekit-preload-data=""
@@ -124,124 +123,125 @@
     <div class="pointer-events-none relative z-1 shrink-0 xl:w-1/3">
         <div
             class="grid max-w-sm grid-cols-4 gap-4 px-10 pt-10 md:max-w-lg md:gap-10 xl:max-w-none xl:px-6 xl:pt-0 [&amp;>*:nth-child(2n-1)]:-translate-y-[calc(50%+1rem/2)] md:[&amp;>*:nth-child(2n-1)]:-translate-y-[calc(50%+1.5rem/2)]">
-            <div></div> <!--[--><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI vue"
-                src="https://img.daisyui.com/images/logos/vue.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI react"
-                src="https://img.daisyui.com/images/logos/react.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI svelte"
-                src="https://img.daisyui.com/images/logos/svelte.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI qwik"
-                src="https://img.daisyui.com/images/logos/qwik.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI laravel"
-                src="https://img.daisyui.com/images/logos/laravel.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI nextjs"
-                src="https://img.daisyui.com/images/logos/nextjs.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI solidjs"
-                src="https://img.daisyui.com/images/logos/solidjs.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI preact"
-                src="https://img.daisyui.com/images/logos/preact.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI phoenix"
-                src="https://img.daisyui.com/images/logos/phoenix.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI nuxtjs"
-                src="https://img.daisyui.com/images/logos/nuxtjs.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI astro"
-                src="https://img.daisyui.com/images/logos/astro.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 1; transform: translateY(0rem);"
-                alt="daisyUI angular"
-                src="https://img.daisyui.com/images/logos/angular.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 0.906805; transform: translateY(0.0931953rem);"
-                alt="daisyUI vite"
-                src="https://img.daisyui.com/images/logos/vite.svg"
-            ><img
-                loading="lazy"
-                width="80"
-                height="80"
-                class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
-                style="opacity: 0.406805; transform: translateY(0.593195rem);"
-                alt="daisyUI rails"
-                src="https://img.daisyui.com/images/logos/rails.svg"
-            ><!--]-->
+            <div></div> <<img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI vue"
+    src="https://img.daisyui.com/images/logos/vue.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI react"
+    src="https://img.daisyui.com/images/logos/react.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI svelte"
+    src="https://img.daisyui.com/images/logos/svelte.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI qwik"
+    src="https://img.daisyui.com/images/logos/qwik.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI laravel"
+    src="https://img.daisyui.com/images/logos/laravel.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI nextjs"
+    src="https://img.daisyui.com/images/logos/nextjs.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI solidjs"
+    src="https://img.daisyui.com/images/logos/solidjs.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI preact"
+    src="https://img.daisyui.com/images/logos/preact.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI phoenix"
+    src="https://img.daisyui.com/images/logos/phoenix.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI nuxtjs"
+    src="https://img.daisyui.com/images/logos/nuxtjs.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI astro"
+    src="https://img.daisyui.com/images/logos/astro.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 1; transform: translateY(0rem);"
+    alt="daisyUI angular"
+    src="https://img.daisyui.com/images/logos/angular.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 0.906805; transform: translateY(0.0931953rem);"
+    alt="daisyUI vite"
+    src="https://img.daisyui.com/images/logos/vite.svg"
+><img
+    loading="lazy"
+    width="80"
+    height="80"
+    class="aspect-square w-full will-change-auto motion-reduce:[scale:1]! motion-reduce:opacity-100! motion-reduce:filter-none!"
+    style="opacity: 0.406805; transform: translateY(0.593195rem);"
+    alt="daisyUI rails"
+    src="https://img.daisyui.com/images/logos/rails.svg"
+>
+<!-- </div>
         </div>
     </div>
-</div>
+</div> -->
 
-
+<!-- 
 
 <div class="bg-base-100 min-h-[120vh] py-20">
     <div class="sticky top-20 w-full px-2 pt-40 lg:px-10">
@@ -263,8 +263,8 @@
                     style="opacity: 0.1;"
                 >decisions</span></h2>
             <p class="text-base-content/70 font-title relative z-2 mx-auto max-w-3xl py-4 font-light md:text-3xl">
-                <!---->Your website should be unique. Create a custom theme for yourself using daisyUI theme generator.
-                The colors you pick will be applied to all daisyUI components.<!---->
+                Your website should be unique. Create a custom theme for yourself using daisyUI theme generator.
+                The colors you pick will be applied to all daisyUI components
             </p>
             <div class="h-10"></div>
             <div class="flex w-full flex-col justify-center gap-4 md:flex-row">
@@ -286,4 +286,4 @@
         This is dark text on a light background,
         which switches to light text on a dark background in dark mode.
     </div>
-</div>
+</div> -->

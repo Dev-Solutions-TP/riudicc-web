@@ -8,7 +8,7 @@ import { PageTitleComponent } from "../../../../components/page-title/page-title
 
 @Component({
   selector: 'app-noticia-page',
-  imports: [NoticiaPageViewComponent, NoticiaCardComponent, PageTitleComponent],
+  imports: [NoticiaPageViewComponent, PageTitleComponent],
   templateUrl: './noticia-page.component.html',
 })
 export class NoticiaPageComponent {

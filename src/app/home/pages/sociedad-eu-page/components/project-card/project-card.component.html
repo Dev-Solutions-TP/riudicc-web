@@ -5,7 +5,7 @@
             <!-- [src]="imagenPrincipal() ? 'https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp': 'https://riudicc.org/img/' + imagenPrincipal().url" -->
             <img
                 [src]="proyecto().images | projectImagePipe"
-                [alt]="imagenPrincipal()?.altText || traduccion().titulo"
+                [alt]="imagenPrincipal() || traduccion().titulo"
             >
 
             <!-- class="max-w-xs max-h-60 object-cover" -->
@@ -23,7 +23,7 @@
         <figure class="h-50 overflow-hidden">
             <img
                 [src]="proyecto().images | projectImagePipe"
-                [alt]="imagenPrincipal()?.altText || traduccion().titulo"
+                [alt]="imagenPrincipal() || traduccion().titulo"
                 class="w-full h-full object-cover"
             >
         </figure>

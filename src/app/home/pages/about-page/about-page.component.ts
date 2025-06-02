@@ -4,6 +4,9 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { InstitucionesService } from '../instituciones/services/instituciones.service';
 import { InstitucionEntity } from '../instituciones/interfaces/aliados.interface';
 import { InstitucionCardShortComponent } from "../instituciones/components/institucion-card-short/institucion-card-short.component";
+import { LocalizationService } from '@shared/services/localization.service';
+
+
 
 @Component({
   selector: 'app-about-page',
@@ -13,6 +16,7 @@ import { InstitucionCardShortComponent } from "../instituciones/components/insti
 export class AboutPageComponent {
 
   private currentLocale = signal(inject(LOCALE_ID));
+  private lang = inject(LocalizationService);
 
 
   private institucionesServer = inject(InstitucionesService);
@@ -91,5 +95,18 @@ export class AboutPageComponent {
     return traduccion ?? institucion.traducciones[0];
   }
 
+  aboutText: Record<'es' | 'en' | 'fr', string> = {
+    es: 'Sobre',
+    en: 'About',
+    fr: 'À propos',
+  };
+
+  about = computed(() => {
+    const locale = this.currentLocale() as 'es' | 'en' | 'fr';
+    return this.aboutText[locale] ?? 'News';
+  });
+
+
+  viewMoreText = this.lang.viewMoreText;
 
 }

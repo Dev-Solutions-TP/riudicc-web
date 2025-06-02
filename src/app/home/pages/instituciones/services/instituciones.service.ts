@@ -30,7 +30,7 @@ export class InstitucionesService {
 
 
     getInstituciones(option: Options): Observable<InstitucionResponse> {
-        const { limit = 8, offset = 0 } = option;
+        const { limit = 100, offset = 0 } = option;
 
         return this.http.get<InstitucionResponse>(`${API_URL}/instituciones`, {
             params: {

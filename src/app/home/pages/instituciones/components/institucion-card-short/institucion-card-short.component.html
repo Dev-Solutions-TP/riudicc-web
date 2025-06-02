@@ -1,35 +1,37 @@
-<div
-    class="cursor-pointer rounded border border-gray-200 bg-white hover:shadow-xl shadow-sm transition-shadow duration-300"
-    [routerLink]="['/partners', institucion().slug]"
->
-    <div class="flex items-center gap-4 p-4">
-        <!-- Logo universidad -->
-        <figure class="w-40 h-20 bg-white rounded overflow-hidden flex justify-center items-center">
-            <img
-                [src]="institucion().images | institucionImagePipe"
-                [alt]="institucion().images[0].altText"
-                class="object-contain w-full h-full p-2"
-            >
-        </figure>
-
-        <!-- Información -->
-        <div class="flex flex-col justify-between h-full flex-grow">
-
-            <!-- Nombre -->
-            <h4 class="text-base font-semibold text-primary hover:underline transition-all">
-                {{ traduccion().name }}
-            </h4>
-
-            <!-- Bandera -->
-            <!-- Banderita -->
-
-            <div class="flex items-center space-x-2 mt-2">
+<div class="animate-fadeIn ">
+    <div
+        class="cursor-pointer hover:shadow-xl shadow-sm transition-shadow duration-300 rounded-xl bg-base-200"
+        [routerLink]="['/partners', institucion().slug]"
+    >
+        <div class="flex items-center gap-4 p-4">
+            <!-- Logo universidad -->
+            <figure class="w-40 h-20 rounded overflow-hidden flex justify-center items-center">
                 <img
-                    [src]="'https://flagcdn.com/w40/' + (institucion().paisCode.toLowerCase()) + '.png'"
-                    class="w-6 h-4 object-cover rounded-sm"
-                    [alt]="institucion().pais"
+                    [src]="institucion().images | institucionImagePipe"
+                    [alt]="institucion().images[0].altText"
+                    class="object-contain w-full h-full p-2"
                 >
-                <span class="text-sm text-gray-500 capitalize">{{ institucion().pais }}</span>
+            </figure>
+
+            <!-- Información -->
+            <div class="flex flex-col justify-between h-full flex-grow">
+
+                <!-- Nombre -->
+                <h4 class="text-base font-semibold text-primary hover:underline transition-all">
+                    {{ traduccion().name }}
+                </h4>
+
+                <!-- Bandera -->
+                <!-- Banderita -->
+
+                <div class="flex items-center space-x-2 mt-2">
+                    <img
+                        [src]="'https://flagcdn.com/w40/' + (institucion().paisCode.toLowerCase()) + '.png'"
+                        class="w-6 h-4 object-cover rounded-sm"
+                        [alt]="institucion().pais"
+                    >
+                    <span class="text-sm text-gray-500 capitalize">{{ institucion().pais }}</span>
+                </div>
             </div>
         </div>
     </div>
