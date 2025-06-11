@@ -1,0 +1,11 @@
+@if (noticiaResource.isLoading()) {
+<div class="flex justify-center items-center h-screen">
+  <span class="loading loading-spinner loading-lg"></span>
+</div>
+}
+<!--  -->
+
+@if( noticiaResource.hasValue() ) {
+<!-- Noticia -->
+<noticia-details [noticia]="noticiaResource.value()!" />
+}

@@ -1,3 +1,14 @@
+<section
+    aria-labelledby="
+            banners-section"
+    class="container mx-auto px -8  md:px-10  py-8"
+>
+
+    @if (bannersResponse.hasValue()) {
+    <home-carousel [banners]="bannersResponse.value().items"></home-carousel>
+
+    }
+</section>
 <div
     class="relative flex max-w-[100rem] flex-col-reverse items-center justify-center gap-10 p-4 md:gap-20 md:p-20 xl:flex-row-reverse">
     <div>
@@ -38,7 +49,7 @@
 
 
 
-<section
+<!-- <section
     aria-labelledby="
             banners-section"
     class="mt-10 md:mt-20"
@@ -48,7 +59,7 @@
     <home-carousel [banners]="bannersResponse.value().items"></home-carousel>
 
     }
-</section>
+</section> -->
 
 
 <section aria-labelledby="news-section ">
@@ -77,6 +88,7 @@
             }
 
             @if (noticiasResponse.hasValue()) {
+            <home-blog [noticias]="noticiasResponse.value().items"></home-blog>
             <div class="flex flex-col gap-8">
                 @for (noticia of noticiasResponse.value().items; track $index) {
 

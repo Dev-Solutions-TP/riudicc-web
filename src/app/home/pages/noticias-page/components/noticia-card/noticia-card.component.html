@@ -19,14 +19,14 @@
 
             <div class="card-body w-[65%] p-4 flex flex-col justify-between">
                 <div>
-                    <h2
-                        class="card-title font-montserrat text-black hover:underline cursor-pointer"
+
+                    <h1
+                        class="text-2xl font-semibold leading-6 mt-4 text-gray-800 hover:underline cursor-pointer"
                         [routerLink]="['/news', noticia().slug]"
                     >
-                        {{ traduccion().title }}
-                    </h2>
-                    <p class="line-clamp-3">{{ traduccion().contentDescription}}</p>
-
+                        {{traduccion().title}}</h1>
+                    <p class="line-clamp-3 text-base leading-6 text-gray-600 mt-2">
+                        {{traduccion().contentDescription}}</p>
                     <div class="flex items-center space-x-2 mt-2">
                         @if (noticia().paisCode) {
                         <img
@@ -67,14 +67,38 @@
             </figure>
 
             <div class="card-body">
-                <h2
-                    class="card-title font-montserrat text-black hover:underline cursor-pointer"
+
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center">
+                        <p class="text-base leading-1 text-gray-500">{{ noticia().displayDate | date: 'EEEE d,
+                            MMMM'
+                            }}</p>
+
+                    </div>
+                    <div class="flex items-center">
+                        <svg
+                            width="64"
+                            height="2"
+                            viewBox="0 0 64 2"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M64 1H0"
+                                stroke="#6B7280"
+                            />
+                        </svg>
+                    </div>
+                </div>
+                <h1
+                    class="text-2xl font-semibold leading-6 text-gray-800 cursor-pointer"
                     [routerLink]="['/news', noticia().slug]"
                 >
-                    {{ traduccion().title }}
-                </h2>
-                <p>{{ traduccion().contentDescription }}</p>
-
+                    {{traduccion().title}}
+                </h1>
+                <p class="line-clamp-3 text-base leading-6 text-gray-600 mt-1">
+                    {{traduccion().contentDescription}}
+                </p>
                 <div class="flex items-center space-x-2 mt-2">
                     @if (noticia().paisCode) {
                     <img
@@ -93,9 +117,9 @@
                         [routerLink]="['/news', noticia().slug]"
                     >
                         {{viewMoreText()}}
-
                     </button>
                 </div>
+
 
             </div>
         </div>

@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { NoticiasService } from '@home/pages/noticias-page/services/noticia.service';
 import { PaginationComponent } from '@shared/components/pagination/pagination.component';
 import { PaginationService } from '@shared/components/pagination/pagination.service';
-import { ProductTableComponent } from "../../../home/pages/noticias-page/components/noticia-table/noticia-table.component";
+import { ProductTableComponent } from "../noticias/noticia-table/noticia-table.component";
 
 @Component({
   selector: 'app-noticias-admin-page',

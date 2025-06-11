@@ -1,0 +1,210 @@
+<form
+  [formGroup]="noticiaForm"
+  (ngSubmit)="onSubmit()"
+  class="space-y-8"
+>
+  <!-- 1. Datos Generales -->
+  <section>
+    <h2 class="text-xl font-bold">Datos Generales</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4 text-black ">
+      <input
+        class="input input-primary  border-slate-500 w-full text-black placeholder:text-gray-500 "
+        type="text"
+        placeholder="Slug"
+        formControlName="slug"
+      >
+      <input
+        class="input input-primary w-full placeholder:text-gray-500"
+        type="text"
+        placeholder="Tags (separados por comas)"
+        formControlName="tags"
+      >
+      <input
+        class="input input-bordered w-full placeholder:text-gray-500"
+        type="text"
+        placeholder="Código de país"
+        formControlName="paisCode"
+      >
+      <input
+        class="input input-bordered w-full placeholder:text-gray-500"
+        type="text"
+        placeholder="País"
+        formControlName="pais"
+      >
+      <input
+        class="input input-bordered w-full placeholder:text-gray-500"
+        type="text"
+        placeholder="Ciudad"
+        formControlName="ciudad"
+      >
+      <div class="flex gap-2">
+        <input
+          class="input input-bordered w-full"
+          type="number"
+          placeholder="Latitud"
+          formControlName="latitud"
+        >
+        <input
+          class="input input-bordered w-full"
+          type="number"
+          placeholder="Longitud"
+          formControlName="longitud"
+        >
+      </div>
+      <select
+        class="select select-bordered w-full"
+        formControlName="state"
+      >
+        <option value="Publicado">Publicado</option>
+        <option value="Borrador">Borrador</option>
+      </select>
+      <input
+        class="input input-bordered w-full placeholder:text-gray-500"
+        type="date"
+        formControlName="displayDate"
+      >
+    </div>
+  </section>
+
+  <!-- 2. Imágenes -->
+  <section>
+    <h2 class="text-xl font-bold">Imágenes</h2>
+    @for (image of imagesFormArray.controls; track image; let i = $index) {
+    <div class="flex gap-2 items-center">
+      <div
+        class="grid grid-cols-2 gap-2"
+        *ngFor="let image of imagesFormArray.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <input
+          type="text"
+          placeholder="URL de la imagen"
+          class="input input-bordered w-full"
+          formControlName="url"
+        />
+        <input
+          type="text"
+          placeholder="Texto alternativo"
+          class="input input-bordered w-full"
+          formControlName="altText"
+        />
+      </div>
+      <button
+        class="btn btn-outline btn-error"
+        type="button"
+        (click)="imagesFormArray.removeAt(i)"
+      >Eliminar</button>
+    </div>
+    }
+    <button
+      class="btn btn-primary mt-2"
+      type="button"
+      (click)="addImage()"
+    >+ Agregar Imagen</button>
+  </section>
+
+  <!-- 3. Enlaces -->
+  <section>
+    <h2 class="text-xl font-bold">Enlaces</h2>
+    @for (enlace of enlacesFormArray.controls; track enlace; let i = $index) {
+    <div class="flex gap-2 items-center">
+      <div
+        class="grid grid-cols-2 gap-2"
+        *ngFor="let image of imagesFormArray.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <input
+          type="text"
+          placeholder="URL de la imagen"
+          class="input input-bordered w-full"
+          formControlName="url"
+        />
+        <input
+          type="text"
+          placeholder="Texto alternativo"
+          class="input input-bordered w-full"
+          formControlName="label"
+        />
+      </div>
+
+      <button
+        class="btn btn-outline btn-error"
+        type="button"
+        (click)="enlacesFormArray.removeAt(i)"
+      >Eliminar</button>
+    </div>
+    }
+    <button
+      class="btn btn-primary mt-2"
+      type="button"
+      (click)="addEnlace()"
+    >+ Agregar Enlace</button>
+  </section>
+
+  <!-- 4. Traducciones
+  <section>
+    <h2 class="text-xl font-bold">Traducciones</h2>
+    @for (traduccion of traduccionesFormArray.controls; track traduccion; let i = $index) {
+    <div class="space-y-2 border p-2 rounded">
+      
+      <select
+        class="select select-bordered w-full"
+        [formControl]="traduccion.get('idioma')"
+      >
+        <option value="es">Español</option>
+        <option value="en">Inglés</option>
+      </select>
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        placeholder="Título"
+        [formControl]="traduccion.get('title')"
+      >
+      <input
+        type="text"
+        class="input input-bordered w-full"
+        placeholder="Descripción"
+        [formControl]="traduccion.get('contentDescription')"
+      >
+      <textarea
+        class="textarea textarea-bordered w-full"
+        rows="5"
+        placeholder="Contenido HTML"
+        [formControl]="traduccion.get('content')"
+      ></textarea>
+      <button
+        class="btn btn-outline btn-error"
+        type="button"
+        (click)="traduccionesFormArray.removeAt(i)"
+      >Eliminar</button>
+    </div>
+    }
+    <button
+      class="btn btn-primary mt-2"
+      type="button"
+      (click)="addTraduccion()"
+    >+ Agregar Traducción</button>
+  </section> -->
+
+  <!-- 5. Instituciones -->
+  <!-- <section>
+    <h2 class="text-xl font-bold">Instituciones</h2>
+    @for (institucion of instituciones()) {
+    <label class="inline-flex items-center gap-2">
+      <input
+        type="checkbox"
+        [value]="institucion.id"
+        (change)="onInstitucionChange($event)"
+      >
+      <span>{{ institucion.traducciones[0]?.nombre }}</span>
+    </label>
+    }
+  </section> -->
+
+  <div class="flex justify-end">
+    <button
+      class="btn btn-success"
+      type="submit"
+    >Guardar</button>
+  </div>
+</form>

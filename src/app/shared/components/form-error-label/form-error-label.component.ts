@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-import { FormUtils } from '@utils/form-utils';
+import { FormUtils } from '@shared/utils/form-utils';
+
 
 @Component({
   selector: 'form-error-label',

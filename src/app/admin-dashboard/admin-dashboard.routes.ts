@@ -5,6 +5,7 @@ import { NoticiasAdminPageComponent } from './pages/noticias-admin-page/noticias
 import { BannersAdminPageComponent } from './pages/banner-admin-page copy/banners-admin-page.component';
 import { InstitucionesAdminPageComponent } from './pages/instituciones-admin-page/instituciones-admin-page.component';
 import { IsOwnerGuard } from '@auth/guards/is-admin-owner.guard';
+import { NoticiaDetailsComponent } from './pages/noticias/noticia-admin-page/noticia-details/noticia-details.component';
 
 
 export const adminDashboardRoutes: Routes = [
@@ -32,9 +33,8 @@ export const adminDashboardRoutes: Routes = [
       },
       {
         path: 'noticias/:id',
-        component: NoticiasAdminPageComponent,
+        component: NoticiaDetailsComponent,
         canMatch: [IsAdminOrOwnerGuard],
-
       },
 
       {

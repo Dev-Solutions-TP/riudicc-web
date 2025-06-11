@@ -150,6 +150,12 @@ export class NoticiasService {
         );
     }
 
+    // createNoticia(noticia: Partial<NoticiaEntity>): Observable<NoticiaEntity> {
+    //     return this.http.post<NoticiaEntity>(`${API_URL}/noticias`, noticia).pipe(
+    //         tap((created) => this.noticiaCache.set(created.id, created))
+    //     );
+    // }
+
     updateNoticia(id: string, noticia: Partial<NoticiaEntity>): Observable<NoticiaEntity> {
         return this.http.patch<NoticiaEntity>(`${API_URL}/noticias/${id}`, noticia).pipe(
             tap((updated) => this.noticiaCache.set(updated.id, updated))

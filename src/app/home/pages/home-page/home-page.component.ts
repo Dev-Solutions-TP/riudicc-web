@@ -6,13 +6,14 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { NoticiasService } from '@home/pages/noticias-page/services/noticia.service';
 import { NoticiaCardComponent } from "../noticias-page/components/noticia-card/noticia-card.component";
 import { RouterLink } from '@angular/router';
+import { BlogComponent } from "../../components/NewsBlog/news-blog.component";
 
 
 
 
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink, HomeCarouselComponent, NoticiaCardComponent],
+  imports: [RouterLink, HomeCarouselComponent, NoticiaCardComponent, BlogComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {

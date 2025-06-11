@@ -4,10 +4,11 @@ import { NoticiaImagePipe } from '../../pipes/noticia-project-image.pipe';
 import { RouterLink } from '@angular/router';
 
 import { LocalizationService } from '@shared/services/localization.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'noticia-card',
-  imports: [RouterLink, NoticiaImagePipe],
+  imports: [RouterLink, NoticiaImagePipe, DatePipe],
   templateUrl: './noticia-card.component.html',
 })
 export class NoticiaCardComponent {
