@@ -5,12 +5,19 @@
 
 <div class=" max-w-[100rem]   px-4  md:px-20   grid grid-cols-1  lg:grid-cols-2 mt-7 gap-5">
 
-    @for (proyecto of sociedadResponse.value()?.items; track $index) {
+    @if (sociedadResponse.isLoading()) {
+    <div class="flex justify-center items-center h-screen">
+
+        <span class="loading loading-spinner loading-lg"></span>
+    </div>
+    }
+    @if (sociedadResponse.hasValue()) {
+    @for (proyecto of sociedadResponse.value().items; track $index) {
 
     <project-card [proyecto]="proyecto"></project-card>
     }
     @empty {
     <p>No data loaded yet.</p>
-    }
+    }}
 
 </div>

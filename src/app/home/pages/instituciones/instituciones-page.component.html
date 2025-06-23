@@ -6,13 +6,19 @@
 
 
 <div class="  max-w-[100rem] px-4  md:px-20 grid grid-cols-1 lg:grid-cols-2  mt-2 gap-10 ">
+    @if (institucionesResponse.isLoading()) {
+    <div class="flex justify-center items-center h-screen">
 
-    @for (institucion of institucionesResponse.value()?.items; track $index) {
+        <span class="loading loading-spinner loading-lg"></span>
+    </div>
+    }
+    @if (institucionesResponse.hasValue()) {
+    @for (institucion of institucionesResponse.value().items; track $index) {
 
     <institucion-card [institucion]="institucion"></institucion-card>
     }
     @empty {
     <p>No data loaded yet.</p>
     }
-
+    }
 </div>
