@@ -158,6 +158,16 @@
                             {{ getTitle("eu") }}
                         </a>
                     </li>
+                    <li>
+                        <a
+                            [routerLink]="'workPackages'"
+                            routerLinkActive="text-secondary"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            class="hover:text-primary hover:bg-primary/10 transition px-4 py-2 rounded-md"
+                        >
+                            {{ getTitle("workPackages") }}
+                        </a>
+                    </li>
                 </ul>
             </div>
 

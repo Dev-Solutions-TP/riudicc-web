@@ -31,6 +31,9 @@ export class NoticiaPageViewComponent {
   traduccion = getTraduccionNoticia(this.noticia, this.currentLocale);
 
   imagenPrincipal = computed(() => this.noticia().images?.[0]);
+  imagenPrincipalInst(inst: InstitucionEntity) {
+    return inst.images?.[0];
+  }
 
   getTraduccionInstitucion(inst: InstitucionEntity) {
     const lang = this.currentLocale();

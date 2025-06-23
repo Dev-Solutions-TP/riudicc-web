@@ -12,11 +12,12 @@
         <p>{{ traduccion()?.contentDescription }}</p>
     </div>
 
+    @if(noticia().images && noticia().images.length > 0) {
     <noticia-carousel
         [images]="noticia().images"
         class="mt-4"
     ></noticia-carousel>
-
+    }
     <div class="w-full mt-4 sm:mt-6  mb-4 sm:mb-6 lg:mt-10 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 2xl:px-20 py-6">
         <article class="prose max-w-none">
             <div [innerHTML]="traduccion()?.content"></div>
@@ -31,7 +32,7 @@
             class="w-6 h-4 object-cover rounded-sm"
             [alt]="noticia().pais"
         >
-        <span class="text-sm text-gray-500 capitalize">{{ noticia().pais }}</span>
+        <span class="text-sm text-gray-500 capitalize">{{ noticia().pais.toLocaleLowerCase() }}</span>
     </div>
 
     <!-- Google Maps -->
@@ -46,7 +47,7 @@
 
 
     <section class="mt-10">
-        @if (noticia().enlaces ) {
+        @if (noticia().enlaces && noticia().enlaces.length > 0) {
 
         <h3 class="text-xl font-semibold mb-4 text-black">{{enlacesRelacionados()}}</h3>
 
@@ -94,7 +95,7 @@
                 <figure class="h-32 bg-white flex justify-center items-center overflow-hidden rounded-t-xl">
                     <img
                         [src]="inst.images | imageNamePipe : 'uni'"
-                        [alt]="imagenPrincipal().altText "
+                        [alt]="imagenPrincipalInst(inst)?.altText || getTraduccionInstitucion(inst).name"
                         class="h-full w-full object-contain p-4"
                     >
                 </figure>

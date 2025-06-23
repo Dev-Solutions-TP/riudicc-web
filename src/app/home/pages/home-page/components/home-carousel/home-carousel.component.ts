@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Banner } from '../../interfaces/banner.interface';
 import { ImageNamePipe } from '@shared/pipes/image.pipe';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -22,7 +23,7 @@ import { ImageNamePipe } from '@shared/pipes/image.pipe';
 
 @Component({
   selector: 'home-carousel',
-  imports: [ImageNamePipe],
+  imports: [ImageNamePipe, RouterLink],
   templateUrl: './home-carousel.component.html',
   styles: [`
   
@@ -82,7 +83,11 @@ export class HomeCarouselComponent implements AfterViewInit {
       },
     });
   }
-
+  // navigateTo(banner: Banner) {
+  //   if (banner.enlaces) {
+  //     this.router.navigateByUrl(banner.enlaces);
+  //   }
+  // }
 
 
   // Recibe un banner y devuelve el altText según el idioma seleccionado

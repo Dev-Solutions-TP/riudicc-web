@@ -1,0 +1,46 @@
+<page-title
+    firstWord="Work"
+    secondWord="Packages"
+></page-title>
+
+
+<section
+    aria-labelledby="work-packages-intro"
+    class="max-w-[100rem] px-4 md:px-20"
+>
+    <div class="mb-10">
+        <h2
+            id="work-packages-intro"
+            class="mt-10 md:mt-20 text-left font-['Roboto'] tracking-wide"
+        >
+            <span class="text-justify block text-2xl md:text-3xl font-light text-base-content/70">
+                Discover the structure and strategic goals of the RIUDICC project through its work packages (WPs). Each
+                WP defines responsibilities, deliverables, and milestones aimed at achieving inclusive international
+                collaboration in higher education.
+            </span>
+        </h2>
+    </div>
+</section>
+
+<section
+    aria-labelledby="work-packages-cards"
+    class="mt-10 md:mt-20 mx-auto max-w-6xl"
+>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        @for (wp of workPackages(); track wp.wpNumber) {
+        <div class="card bg-base-100 shadow-md hover:shadow-xl transition">
+            <div class="card-body">
+                <h3 class="text-xl font-semibold text-primary">{{ wp.wpNumber }} - {{ wp.name }}</h3>
+                <p class="text-sm text-gray-500">Lead: {{ wp.lead }}</p>
+                <p class="text-sm text-gray-500">Duration: Month {{ wp.startMonth }} to {{ wp.endMonth }}</p>
+                <p class="text-sm text-gray-500">Effort: {{ wp.effort }} person-months</p>
+                <ul class="mt-2 list-disc list-inside text-gray-600 text-sm">
+                    @for (d of wp.deliverables; track d) {
+                    <li>{{ d }}</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        }
+    </div>
+</section>

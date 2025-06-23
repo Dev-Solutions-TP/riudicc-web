@@ -12,6 +12,7 @@ import { InstitucionPageComponent } from "./pages/instituciones/pages/institucio
 
 import { NoticiasPageComponent } from "@noticias/noticias-page.component";
 import { NoticiaPageComponent } from "@noticias/pages/noticia-page/noticia-page.component";
+import { WorkPackagesPageComponent } from "./pages/WorkPackagesPageComponent/work-packages-page.component";
 
 
 
@@ -27,14 +28,29 @@ export const homeRoutes: Routes = [
                 component: HomePageComponent,
             },
             {
-                path: 'about',
-                title: 'Sobre RIUDICC',
-                component: AboutPageComponent,
+                path: 'news',
+                title: 'Noticias',
+                children: [
+                    {
+                        path: '',
+                        component: NoticiasPageComponent,
+
+                    },
+                    {
+                        path: ':idSlug',
+                        component: NoticiaPageComponent, // detalle de una institución
+                    }
+                ]
             },
             {
                 path: 'regulations',
                 title: 'Normativa',
                 component: NormativaPageComponent,
+            },
+            {
+                path: 'about',
+                title: 'Sobre RIUDICC',
+                component: AboutPageComponent,
             },
             {
                 path: 'partners',
@@ -58,26 +74,16 @@ export const homeRoutes: Routes = [
                 title: 'Eventos',
                 component: EventosPagesComponent,
             },
-            {
-                path: 'news',
-                title: 'Noticias',
-                children: [
-                    {
-                        path: '',
-                        component: NoticiasPageComponent,
 
-                    },
-                    {
-                        path: ':idSlug',
-                        component: NoticiaPageComponent, // detalle de una institución
-                    }
-                ]
-            },
             {
                 path: 'eu',
-                title: 'Sociedad Europea',
-
+                title: 'European Society',
                 component: SociedaEuPageComponent,
+            },
+            {
+                path: 'workPackages',
+                title: 'Work Packages',
+                component: WorkPackagesPageComponent,
             },
             // {
             //     path: 'news/:id',

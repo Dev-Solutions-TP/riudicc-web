@@ -6,18 +6,39 @@
     <div class="swiper-wrapper">
         <!-- Slides -->
         @for (banner of banners() ; track $index) {
+        @if (banner.enlaces && banner.enlaces.length > 0) {
 
-        <div class="swiper-slide">
+
+        <div class="swiper-slide bg-base-100">
+            <a
+                [routerLink]="[banner.enlaces]"
+                class="block cursor-pointer"
+            >
+                <img
+                    [src]="banner.image | imageNamePipe: 'ban'"
+                    alt="{{getAltText(banner)}}"
+                    class="w-full h-48 sm:h-64 md:h-80 lg:h-[30rem] object-cover"
+                >
+                <!-- class="w-full  object-cover"
+     
+     -->
+            </a>
+        </div>
+        }@else {
+        <div class="swiper-slide bg-base-100">
             <img
                 [src]="banner.image | imageNamePipe: 'ban'"
                 alt="{{getAltText(banner)}}"
-                class="w-full  object-cover"
+                class="w-full h-48 sm:h-64 md:h-80 lg:h-[30rem] object-cover"
             >
-
+            <!-- class="w-full  object-cover"
+     
+     -->
         </div>
         }
 
 
+        }
 
     </div>
     <!-- If we need pagination -->
