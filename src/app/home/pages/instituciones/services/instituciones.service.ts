@@ -32,6 +32,20 @@ export class InstitucionesService {
     getInstituciones(option: Options): Observable<InstitucionResponse> {
         const { limit = 100, offset = 0 } = option;
 
+        return this.http.get<InstitucionResponse>(`${API_URL}/instituciones/public`, {
+            params: {
+                limit,
+                offset,
+            },
+        }).pipe(
+
+            tap((response) => console.log('Response:', response)),
+        );
+    }
+
+    getInstitucionesUsers(option: Options): Observable<InstitucionResponse> {
+        const { limit = 100, offset = 0 } = option;
+
         return this.http.get<InstitucionResponse>(`${API_URL}/instituciones`, {
             params: {
                 limit,
@@ -45,6 +59,11 @@ export class InstitucionesService {
 
 
     getInstitucionByIdSlug(idSlug: string): Observable<InstitucionEntity> {
+
+
+        return this.http.get<InstitucionEntity>(`${API_URL}/instituciones/public/${idSlug}`, {});
+    }
+    getInstitucionByIdSlugUser(idSlug: string): Observable<InstitucionEntity> {
 
 
         return this.http.get<InstitucionEntity>(`${API_URL}/instituciones/${idSlug}`, {});

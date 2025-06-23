@@ -65,7 +65,7 @@
         <div class="navbar-center hidden lg:flex">
 
 
-            @for (route of homeRoutes; track route.path) {
+            <!-- @for (route of homeRoutes; track route.path) {
 
             <ul class="menu menu-horizontal px-1 ">
                 <a
@@ -77,9 +77,93 @@
                     {{getTitle(route.key)}}
                 </a>
             </ul>
-            }
+            } -->
+
+            <ul class="menu menu-horizontal px-1 ">
+                <a
+                    routerLink=""
+                    routerLinkActive="text-secondary"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="hover:text-primary hover:bg-primary/10 transition flex py-2 px-4 rounded-md"
+                >
+                    {{getTitle("home")}}
+                </a>
+            </ul>
+
+            <ul class="menu menu-horizontal px-1 ">
+
+                <a
+                    [routerLink]="'news'"
+                    routerLinkActive="text-secondary"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="hover:text-primary hover:bg-primary/10 transition px-4 py-2 rounded-md"
+                >
+                    {{ getTitle("news") }}
+                </a>
+            </ul>
+            <ul class="menu menu-horizontal px-1 ">
+
+                <a
+                    [routerLink]="'partners'"
+                    routerLinkActive="text-secondary"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="hover:text-primary hover:bg-primary/10 transition px-4 py-2 rounded-md"
+                >
+                    {{ getTitle("partners") }}
+                </a>
+            </ul>
+            <div class="dropdown dropdown-end">
+                <div
+                    tabindex="0"
+                    role="button"
+                    class="btn btn-ghost m-1"
+                >
+                    {{ about() }}
+                    <svg
+                        class="ml-2 h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7"
+                        />
+                    </svg>
+                </div>
+                <ul
+                    tabindex="0"
+                    class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                    <li>
+                        <a
+                            [routerLink]="'about'"
+                            routerLinkActive="text-secondary"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            class="hover:text-primary hover:bg-primary/10 transition px-4 py-2 rounded-md"
+                        >
+                            {{ getTitle("about") }}
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            [routerLink]="'eu'"
+                            routerLinkActive="text-secondary"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                            class="hover:text-primary hover:bg-primary/10 transition px-4 py-2 rounded-md"
+                        >
+                            {{ getTitle("eu") }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
 
         </div>
+
         <div class="navbar-end">
 
             <button

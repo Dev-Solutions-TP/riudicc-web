@@ -6,6 +6,7 @@ import { extractRoutes } from '../../utils/extract-routes.util';
 import { LocaleService } from '@shared/services/locale.service';
 import { UpperCasePipe } from '@angular/common';
 import { ROUTE_TITLES } from 'src/app/constants/route-titles';
+import { LocalizationService } from '@shared/services/localization.service';
 
 
 
@@ -21,12 +22,16 @@ export class HomeNavbarComponent {
 
   // Inyecta el servicio
   localeService = inject(LocaleService);
+  private lang = inject(LocalizationService);
+
 
   toggleLocale() {
     this.localeService.changeLocale(
       this.localeService.getLocale === 'es' ? 'en' : 'es'
     );
   }
+
+  about = this.lang.aboutText;
 
   // Obtiene el título traducido según el key y el idioma actual
   getTitle(key: string) {

@@ -51,12 +51,7 @@ export const homeRoutes: Routes = [
                 ]
             },
 
-            {
-                path: 'eu',
-                title: 'Sociedad Europea',
 
-                component: SociedaEuPageComponent,
-            },
 
             {
                 path: 'events',
@@ -77,6 +72,12 @@ export const homeRoutes: Routes = [
                         component: NoticiaPageComponent, // detalle de una institución
                     }
                 ]
+            },
+            {
+                path: 'eu',
+                title: 'Sociedad Europea',
+
+                component: SociedaEuPageComponent,
             },
             // {
             //     path: 'news/:id',

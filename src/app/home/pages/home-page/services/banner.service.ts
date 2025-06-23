@@ -32,7 +32,7 @@ export class BannersService {
     getBanners(option: Options): Observable<BannersResponse> {
         const { limit = 8, offset = 0 } = option;
 
-        return this.http.get<BannersResponse>(`${API_URL}/banners`, {
+        return this.http.get<BannersResponse>(`${API_URL}/banners/public`, {
             params: {
                 limit,
                 offset,

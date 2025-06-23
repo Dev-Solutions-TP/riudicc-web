@@ -6,7 +6,6 @@
 
     @if (bannersResponse.hasValue()) {
     <home-carousel [banners]="bannersResponse.value().items"></home-carousel>
-
     }
 </section>
 <div
@@ -64,7 +63,7 @@
 
 <section aria-labelledby="news-section ">
 
-    <div class=" max-w-[100rem] mt-10 md:mt-20  p-4  md:p-20 ">
+    <div class=" max-w-[100rem] mt-10 md:mt-10  p-4  md:p-20 ">
         <div>
 
 
@@ -89,7 +88,7 @@
 
             @if (noticiasResponse.hasValue()) {
             <home-blog [noticias]="noticiasResponse.value().items"></home-blog>
-            <div class="flex flex-col gap-8">
+            <!-- <div class="flex flex-col gap-8">
                 @for (noticia of noticiasResponse.value().items; track $index) {
 
 
@@ -99,18 +98,18 @@
                     [horizontal]="true"
                 ></noticia-card>
                 }
-            </div>
+            </div> -->
             }
 
 
-            <div class="flex w-full justify-center mt-10">
+            <!-- <div class="flex w-full justify-center mt-10">
 
                 <a
                     data-sveltekit-preload-data=""
                     [routerLink]="['/news']"
                     class="btn  btn-wide btn-lg btn-primary"
                 >{{moreNews()}}</a>
-            </div>
+            </div> -->
 
 
 

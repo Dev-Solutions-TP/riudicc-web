@@ -107,7 +107,7 @@ export class NoticiasService {
         if (this.noticiaCache.has(key)) {
             return of(this.noticiasCache.get(key)!);
         }
-        return this.http.get<NoticiasResponse>(`${API_URL}/noticias`, {
+        return this.http.get<NoticiasResponse>(`${API_URL}/noticias/public`, {
             params: {
                 limit,
                 offset,
@@ -120,6 +120,16 @@ export class NoticiasService {
 
 
     getNoticiaByIdSlug(idSlug: string): Observable<NoticiaEntity> {
+        if (this.noticiaCache.has(idSlug)) {
+            return of(this.noticiaCache.get(idSlug)!);
+        }
+
+        return this.http.get<NoticiaEntity>(`${API_URL}/noticias/public/${idSlug}`,)
+            .pipe(tap((noticia) => this.noticiaCache.set(idSlug, noticia)));
+        ;
+    }
+
+    getNoticiaByIdSlugUser(idSlug: string): Observable<NoticiaEntity> {
         if (this.noticiaCache.has(idSlug)) {
             return of(this.noticiaCache.get(idSlug)!);
         }
