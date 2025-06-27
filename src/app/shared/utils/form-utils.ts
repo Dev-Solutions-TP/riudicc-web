@@ -45,6 +45,9 @@ export class FormUtils {
           if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
             return 'El valor ingresado no luce como un correo electrónico';
           }
+          if (errors['pattern'].requiredPattern === FormUtils.slugPattern) {
+            return 'El slug debe contener solo letras minúsculas, números, guiones (-) o guiones bajos (_), sin espacios ni caracteres especiales.';
+          }
 
           return 'Error de patrón contra expresión regular';
 

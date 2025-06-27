@@ -23,6 +23,7 @@
                     placeholder="Slug"
                     class="input input-bordered w-full"
                 />
+                <form-error-label [control]="bannerForm.get('slug')!" />
             </div>
 
             <div>
@@ -40,27 +41,8 @@
                     formControlName="tags"
                     class="input input-bordered w-full"
                 />
+                <form-error-label [control]="bannerForm.get('tags')!" />
             </div>
-
-            <!-- Imagen -->
-            <!-- <div>
-                <label class="label">
-                    <div
-                        class="tooltip tooltip-bottom z-50"
-                        data-tip="URL completa de la imagen del banner"
-                    >
-                        <span class="label-text font-semibold cursor-help">URL de la imagen</span>
-                    </div>
-                </label>
-                <input
-                    type="text"
-                    formControlName="image"
-                    class="input input-bordered w-full"
-                />
-            </div> -->
-
-
-
             <div>
                 <!-- Fecha de Inicio -->
                 <label class="label">
@@ -76,6 +58,7 @@
                     formControlName="fechaInicio"
                     class="input input-bordered w-full"
                 />
+                <form-error-label [control]="bannerForm.get('fechaInicio')!" />
             </div>
 
             <div>
@@ -93,6 +76,7 @@
                     formControlName="fechaFin"
                     class="input input-bordered w-full"
                 />
+                <form-error-label [control]="bannerForm.get('fechaFin')!" />
             </div>
 
             <div>
@@ -102,7 +86,7 @@
                         class="tooltip tooltip-bottom z-50"
                         data-tip="Texto o URL relacionado al banner"
                     >
-                        <span class="label-text font-semibold cursor-help">Enlaces</span>
+                        <span class="label-text font-semibold cursor-help">Enlace</span>
                     </div>
                 </label>
                 <input
@@ -110,6 +94,7 @@
                     formControlName="enlaces"
                     class="input input-bordered w-full"
                 />
+                <form-error-label [control]="bannerForm.get('enlaces')!" />
             </div>
             <div>
                 <label class="label">
@@ -178,26 +163,37 @@
             class="space-y-2 border p-4 rounded-md mt-2"
             [formGroupName]="i"
         >
-            <label class="label">
-                <span class="label-text font-semibold">Idioma</span>
-            </label>
-            <select
-                formControlName="idioma"
-                class="select select-bordered w-full"
-            >
-                <option value="es">Español</option>
-                <option value="en">Inglés</option>
-            </select>
+            <!-- Idioma -->
+            <div>
 
-            <label class="label">
-                <span class="label-text font-semibold">Texto Alternativo</span>
-            </label>
-            <input
-                type="text"
-                formControlName="altText"
-                placeholder="Texto Alternativo"
-                class="input input-bordered w-full"
-            />
+                <label class="label">
+                    <span class="label-text font-semibold">Idioma</span>
+                </label>
+                <select
+                    formControlName="idioma"
+                    class="select select-bordered w-full"
+                >
+                    <option value="">Seleccione un idioma</option>
+                    <option value="es">Español</option>
+                    <option value="en">Inglés</option>
+                </select>
+                <form-error-label [control]="traduccion.get('idioma')!" />
+            </div>
+
+
+            <div>
+
+                <label class="label">
+                    <span class="label-text font-semibold">Texto Alternativo</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="altText"
+                    placeholder="Texto Alternativo"
+                    class="input input-bordered w-full"
+                />
+                <form-error-label [control]="traduccion.get('altText')!" />
+            </div>
 
             <button
                 class="btn btn-outline btn-error mt-1"
@@ -208,8 +204,8 @@
             </button>
         </div>
         }
-
         }
+
 
         <button
             class="btn btn-primary mt-3"

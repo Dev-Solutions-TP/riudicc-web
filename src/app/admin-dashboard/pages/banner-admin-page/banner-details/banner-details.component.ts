@@ -13,6 +13,8 @@ import { BannerEntity, TraduccionBanner, UpdateBannerDto } from '@home/pages/hom
 import { BannersService } from '@home/pages/home-page/services/banner.service';
 import { firstValueFrom } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { FormErrorLabelComponent } from "../../../../shared/components/form-error-label/form-error-label.component";
+import { FormUtils } from '@shared/utils/form-utils';
 
 
 const API_URL = environment.baseUrl;
@@ -20,7 +22,7 @@ const API_URL = environment.baseUrl;
 @Component({
   selector: 'banner-details',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormErrorLabelComponent],
   templateUrl: './banner-details.component.html',
 })
 export class BannerDetailsComponent implements OnInit {
@@ -31,11 +33,13 @@ export class BannerDetailsComponent implements OnInit {
   bannersService = inject(BannersService);
 
   wasSaved = signal(false);
+  formUtils = FormUtils;
 
   bannerForm = this.fb.group({
-    slug: ['', Validators.required],
+    slug: ['', [Validators.required, Validators.pattern(this.formUtils.slugPattern)]],
     tags: [''],
-    image: ['', Validators.required],
+
+
     enlaces: [''],
     fechaInicio: ['', Validators.required],
     fechaFin: ['', Validators.required],
@@ -80,7 +84,7 @@ export class BannerDetailsComponent implements OnInit {
     this.bannerForm.patchValue({
       slug: banner.slug ?? '',
       tags: banner.tags?.join(',') ?? '',
-      image: banner.image ?? '',
+
       enlaces: banner.enlaces ?? '',
       fechaInicio: this.formatToDateInput(banner.fechaInicio),
       fechaFin: this.formatToDateInput(banner.fechaFin),
@@ -135,17 +139,39 @@ export class BannerDetailsComponent implements OnInit {
   }
 
   async onSubmit() {
+    if (!this.imageFile && !this.originalImageName) {
 
+      alert('Debe subir una imagen.');
+      return;
+    }
     if (this.traduccionesFormArray.length < 2) {
       alert('Debe ingresar al menos dos traducciones.');
       return;
     }
+    const idiomasSeleccionados = this.traduccionesFormArray.controls
+      .map(ctrl => ctrl.get('idioma')?.value);
+
+    const tieneEspanol = idiomasSeleccionados.includes('es');
+    const tieneIngles = idiomasSeleccionados.includes('en');
+
+    if (!tieneEspanol || !tieneIngles) {
+      alert('Debe incluir al menos una traducción en Español y otra en Inglés.');
+      return;
+    }
     if (this.bannerForm.invalid) {
       this.bannerForm.markAllAsTouched();
+      console.log('Formulario inválido:', this.bannerForm.errors);
+      // Revisión campo por campo
+      Object.entries(this.bannerForm.controls).forEach(([key, control]) => {
+        if (control.invalid) {
+          console.error(`Campo inválido: ${key}`, control.errors);
+        }
+      });
+
       return;
     }
 
-
+    console.log('Formulario válido, enviando datos...');
 
     const value = this.bannerForm.value;
 
@@ -171,17 +197,20 @@ export class BannerDetailsComponent implements OnInit {
     let result: BannerEntity;
 
     if (isNew) {
+      console.log('Creando nuevo banner con datos:', dto);
       result = await firstValueFrom(
         this.bannersService.createBanner(dto, this.imageFile)
       );
       this.router.navigate(['/admin/banners', result.id]);
     } else {
+      console.log('Actualizando banner existente con ID:', bannerId, 'y datos:', dto);
       result = await firstValueFrom(
         this.bannersService.updateBanner(bannerId, dto, this.imageFile)
       );
     }
 
     this.wasSaved.set(true);
+    console.log('Operación exitosa, banner guardado:', result);
     setTimeout(() => this.wasSaved.set(false), 3000);
   }
 

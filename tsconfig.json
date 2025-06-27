@@ -19,7 +19,7 @@
       ],
       "@dashboard/*": [
         "./src/app/admin-dashboard/*"
-      ]
+      ],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

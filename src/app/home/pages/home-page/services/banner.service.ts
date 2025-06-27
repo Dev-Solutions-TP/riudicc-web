@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, LOCALE_ID, signal } from '@angular/core';
 
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BannerEntity, BannersResponse, UpdateBannerDto } from '../interfaces/banner.interface';
 
@@ -89,7 +89,7 @@ export class BannersService {
     ): Observable<BannerEntity> {
         if (imageFile) {
             return this.uploadEntityImage(imageFile, 'ban').pipe(
-                switchMap(({ fileName }) => {
+                switchMap((fileName) => {
                     const dto = { ...data, image: fileName };
                     return this.http.post<BannerEntity>(`${API_URL}/banners`, dto);
                 }),
@@ -110,7 +110,7 @@ export class BannersService {
     ): Observable<BannerEntity> {
         if (imageFile) {
             return this.uploadEntityImage(imageFile, 'ban').pipe(
-                switchMap(({ fileName }) => {
+                switchMap((fileName) => {
                     const dto = { ...data, image: fileName };
                     return this.http.patch<BannerEntity>(`${API_URL}/banners/${id}`, dto);
                 }),
@@ -125,14 +125,16 @@ export class BannersService {
 
 
 
-    uploadEntityImage(file: File, folder: string): Observable<{ fileName: string; secureUrl: string }> {
+    uploadEntityImage(file: File, folder: string): Observable<string> {
         const formData = new FormData();
         formData.append('file', file);
 
         return this.http.post<{ fileName: string; secureUrl: string }>(
             `${API_URL}/files/${folder}`,
             formData
-        );
+        ).pipe(map((resp) => resp.fileName));
+
+
     }
 
 }
