@@ -6,7 +6,7 @@ import { ImageNamePipe } from '@shared/pipes/image.pipe';
 
 import { LocalizationService } from '@shared/services/localization.service';
 import { AppText } from '@shared/utils/app-text';
-import { Banner, } from '../../interfaces/banner.interface';
+import { BannerEntity, } from '../../../../home/pages/home-page/interfaces/banner.interface';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { Banner, } from '../../interfaces/banner.interface';
   templateUrl: './banners-table.component.html',
 })
 export class ProductTableComponent {
-  banners = input.required<Banner[]>();
+  banners = input.required<BannerEntity[]>();
 
   private currentLocale = signal(inject(LOCALE_ID));
 

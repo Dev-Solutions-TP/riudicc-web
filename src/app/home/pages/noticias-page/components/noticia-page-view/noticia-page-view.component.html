@@ -27,11 +27,14 @@
 
     <!-- Bandera -->
     <div class="flex items-center space-x-2 mt-2">
+        @if(noticia().paisCode){
+
         <img
             [src]="'https://flagcdn.com/w40/' + noticia().paisCode + '.png'"
             class="w-6 h-4 object-cover rounded-sm"
             [alt]="noticia().pais"
         >
+        }
         <span class="text-sm text-gray-500 capitalize">{{ noticia().pais.toLocaleLowerCase() }}</span>
     </div>
 
@@ -95,7 +98,7 @@
                 <figure class="h-32 bg-white flex justify-center items-center overflow-hidden rounded-t-xl">
                     <img
                         [src]="inst.images | imageNamePipe : 'uni'"
-                        [alt]="imagenPrincipalInst(inst)?.altText || getTraduccionInstitucion(inst).name"
+                        [alt]="imagenPrincipalInst(inst).altText || getTraduccionInstitucion(inst).name"
                         class="h-full w-full object-contain p-4"
                     >
                 </figure>

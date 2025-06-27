@@ -1,0 +1,17 @@
+<a
+    [routerLink]="link()"
+    routerLinkActive="active bg-blue-800"
+    class="group w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-slate-500 hover:text-white transition ease-linear duration-150"
+>
+    <ng-content select="[icon]"></ng-content>
+
+    <div class="flex flex-col">
+
+        <span class="text-lg font-bold leading-5 group-[.active]:text-white ">
+            {{title()}}
+        </span>
+        <span class="text-sm group-hover:text-white text-slate-500 hidden md:block group-[.active]:text-white/70">
+            {{ subtitle() }}
+        </span>
+    </div>
+</a>

@@ -1,7 +1,7 @@
 <div class="overflow-x-auto mb-10 pb-10">
   <table class="table">
     <!-- head -->
-    <thead class=" text-white">
+    <thead class=" ">
       <tr>
         <!-- <th>
           <label>
@@ -60,14 +60,14 @@
           {{ banner.slug }}
         </td>
         <td>
-          {{ banner.activo ? 'Activo' : 'Inactivo' }}
+          {{ banner.state ==='active' ? 'Activo' : 'Inactivo' }}
         </td>
         <th>
           <a
             [routerLink]="['/admin/banners', banner.id]"
             class="btn btn-ghost text-accent btn-xs"
           >
-            Details
+            Edit
           </a>
         </th>
       </tr>

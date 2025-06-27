@@ -7,7 +7,7 @@ import { PaginationComponent } from '@shared/components/pagination/pagination.co
 import { PaginationService } from '@shared/components/pagination/pagination.service';
 
 import { BannersService } from '@home/pages/home-page/services/banner.service';
-import { ProductTableComponent } from "../../../home/pages/home-page/components/banners-table/banners-table.component";
+import { ProductTableComponent } from "../banners-table/banners-table.component";
 
 
 @Component({
@@ -27,7 +27,7 @@ export class BannersAdminPageComponent {
       limit: this.bannersPerPage(),
     }),
     loader: ({ request }) => {
-      return this.bannersSevice.getBanners({
+      return this.bannersSevice.getBannersAdmin({
         offset: request.page * 9,
         limit: request.limit,
       });

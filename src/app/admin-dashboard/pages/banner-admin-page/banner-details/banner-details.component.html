@@ -1,0 +1,247 @@
+<form
+    [formGroup]="bannerForm"
+    (ngSubmit)="onSubmit()"
+    class="space-y-6"
+>
+
+    <section>
+        <h2 class="text-lg font-bold">Datos Generales</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+
+            <div>
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Identificador único para el banner"
+                    >
+                        <span class="label-text font-semibold cursor-help">Slug</span>
+                    </div>
+                </label>
+                <input
+                    type="text"
+                    formControlName="slug"
+                    placeholder="Slug"
+                    class="input input-bordered w-full"
+                />
+            </div>
+
+            <div>
+                <!-- Tags -->
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Palabras clave separadas por coma (ej: promoción, evento)"
+                    >
+                        <span class="label-text font-semibold cursor-help">Tags</span>
+                    </div>
+                </label>
+                <input
+                    type="text"
+                    formControlName="tags"
+                    class="input input-bordered w-full"
+                />
+            </div>
+
+            <!-- Imagen -->
+            <!-- <div>
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="URL completa de la imagen del banner"
+                    >
+                        <span class="label-text font-semibold cursor-help">URL de la imagen</span>
+                    </div>
+                </label>
+                <input
+                    type="text"
+                    formControlName="image"
+                    class="input input-bordered w-full"
+                />
+            </div> -->
+
+
+
+            <div>
+                <!-- Fecha de Inicio -->
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Fecha desde la cual se mostrará el banner"
+                    >
+                        <span class="label-text font-semibold cursor-help">Fecha de Inicio</span>
+                    </div>
+                </label>
+                <input
+                    type="date"
+                    formControlName="fechaInicio"
+                    class="input input-bordered w-full"
+                />
+            </div>
+
+            <div>
+                <!-- Fecha de Fin -->
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Fecha en la que dejará de mostrarse el banner"
+                    >
+                        <span class="label-text font-semibold cursor-help">Fecha de Fin</span>
+                    </div>
+                </label>
+                <input
+                    type="date"
+                    formControlName="fechaFin"
+                    class="input input-bordered w-full"
+                />
+            </div>
+
+            <div>
+                <!-- Enlaces -->
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Texto o URL relacionado al banner"
+                    >
+                        <span class="label-text font-semibold cursor-help">Enlaces</span>
+                    </div>
+                </label>
+                <input
+                    type="text"
+                    formControlName="enlaces"
+                    class="input input-bordered w-full"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Estado del banner: &#10;Publicado (Muestra en Web),&#10;Editando (En espera a ser publicado)&#10;o Borrador (No se muestra en Web)"
+                    >
+                        <span class="label-text font-semibold cursor-help">Estado</span>
+                    </div>
+                </label>
+                <select
+                    formControlName="state"
+                    class="select select-bordered w-full"
+                >
+                    <option value="active">Publicado</option>
+                    <option value="editing">Editando</option>
+                    <option value="deleted">Borrado</option>
+                </select>
+            </div>
+            <div>
+                <!-- Imagen (archivo) -->
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Selecciona una imagen para el banner"
+                    >
+                        <span class="label-text font-semibold cursor-help">Imagen</span>
+                    </div>
+                </label>
+                <!-- Mostrar nombre si existe -->
+                @if (originalImageName) {
+                <div class="text-sm text-gray-500 italic mt-1">
+                    Imagen actual: {{ originalImageName }}
+                </div>
+                }
+                <input
+                    type="file"
+                    accept="image/*"
+                    class="file-input file-input-bordered w-full"
+                    (change)="onImageSelected($event)"
+                />
+
+
+            </div>
+            @if(previewImageUrl()) {
+            <div class="mt-2">
+                <img
+                    [src]="previewImageUrl()"
+                    alt="Vista previa del banner"
+                    class="w-full max-w-xs rounded shadow-md"
+                />
+            </div>}
+        </div>
+
+    </section>
+
+    <section
+        formArrayName="traducciones"
+        class="mb-20"
+    >
+        <h2 class="text-lg font-bold">Traducciones (Texto alternativo)</h2>
+
+        @if (traduccionesFormArray.length > 0) {
+        @for (traduccion of traduccionesFormArray.controls; track traduccion; let i = $index) {
+        <div
+            class="space-y-2 border p-4 rounded-md mt-2"
+            [formGroupName]="i"
+        >
+            <label class="label">
+                <span class="label-text font-semibold">Idioma</span>
+            </label>
+            <select
+                formControlName="idioma"
+                class="select select-bordered w-full"
+            >
+                <option value="es">Español</option>
+                <option value="en">Inglés</option>
+            </select>
+
+            <label class="label">
+                <span class="label-text font-semibold">Texto Alternativo</span>
+            </label>
+            <input
+                type="text"
+                formControlName="altText"
+                placeholder="Texto Alternativo"
+                class="input input-bordered w-full"
+            />
+
+            <button
+                class="btn btn-outline btn-error mt-1"
+                type="button"
+                (click)="removeTraduccion(i)"
+            >
+                Eliminar
+            </button>
+        </div>
+        }
+        @if (traduccionesFormArray.errors as errors) {
+        <div class="text-red-500 mt-2 text-sm">
+            @if (errors.minTraducciones) {
+            Debe ingresar al menos <strong>dos traducciones</strong>.
+            }
+            @if (errors.camposIncompletos) {
+            Todas las traducciones deben tener <strong>idioma</strong> y <strong>texto alternativo</strong>.
+            }
+            @if (errors.idiomasDuplicados) {
+            No se pueden repetir los <strong>idiomas</strong> en las traducciones.
+            }
+        </div>
+        }
+        }
+
+        <button
+            class="btn btn-primary mt-3"
+            type="button"
+            (click)="addTraduccion()"
+        >
+            + Agregar Traducción
+        </button>
+
+        <div class="flex justify-end">
+            <button
+                class="btn btn-success"
+                type="submit"
+            >Guardar</button>
+        </div>
+        @if(wasSaved()){
+        <div class="alert alert-success mt-2">Guardado correctamente</div>
+        }
+    </section>
+
+
+
+</form>

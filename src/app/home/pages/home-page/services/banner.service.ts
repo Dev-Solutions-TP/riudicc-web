@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, LOCALE_ID, signal } from '@angular/core';
 
-import { Observable, tap } from 'rxjs';
+import { Observable, of, switchMap, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { BannersResponse } from '../interfaces/banner.interface';
+import { BannerEntity, BannersResponse, UpdateBannerDto } from '../interfaces/banner.interface';
 
 
 
@@ -15,17 +15,33 @@ interface Options {
     offset?: number;
 
 }
-
+const emptyBanner: BannerEntity = {
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: 'new',
+    slug: '',
+    tags: [],
+    image: '',
+    enlaces: '',
+    fechaInicio: '',
+    fechaFin: '',
+    state: '',
+    traducciones: [],
+    createdBy: {} as any,
+    updatedBy: {} as any,
+};
 
 
 @Injectable({ providedIn: 'root' })
 export class BannersService {
+
     constructor() { }
 
 
     private http = inject(HttpClient);
 
-
+    private bannersCache = new Map<string, BannersResponse>();
+    private bannerCache = new Map<string, BannerEntity>();
 
 
 
@@ -38,6 +54,85 @@ export class BannersService {
                 offset,
             },
         });
+    }
+
+    getBannersAdmin(option: Options): Observable<BannersResponse> {
+        const { limit = 8, offset = 0 } = option;
+
+        return this.http.get<BannersResponse>(`${API_URL}/banners`, {
+            params: {
+                limit,
+                offset,
+            },
+        });
+    }
+
+
+
+    getBannerById(id: string): Observable<BannerEntity> {
+        if (id === 'new') {
+            return of(emptyBanner);
+        }
+
+        if (this.bannerCache.has(id)) {
+            return of(this.bannerCache.get(id)!);
+        }
+
+        return this.http
+            .get<BannerEntity>(`${API_URL}/banners/${id}`)
+            .pipe(tap((banner) => this.bannerCache.set(id, banner)));
+    }
+
+    createBanner(
+        data: Partial<UpdateBannerDto>,
+        imageFile?: File
+    ): Observable<BannerEntity> {
+        if (imageFile) {
+            return this.uploadEntityImage(imageFile, 'ban').pipe(
+                switchMap(({ fileName }) => {
+                    const dto = { ...data, image: fileName };
+                    return this.http.post<BannerEntity>(`${API_URL}/banners`, dto);
+                }),
+                tap((created) => this.bannerCache.set(created.id, created))
+            );
+        }
+
+        return this.http.post<BannerEntity>(`${API_URL}/banners`, data).pipe(
+            tap((created) => this.bannerCache.set(created.id, created))
+        );
+    }
+
+
+    updateBanner(
+        id: string,
+        data: Partial<UpdateBannerDto>,
+        imageFile?: File
+    ): Observable<BannerEntity> {
+        if (imageFile) {
+            return this.uploadEntityImage(imageFile, 'ban').pipe(
+                switchMap(({ fileName }) => {
+                    const dto = { ...data, image: fileName };
+                    return this.http.patch<BannerEntity>(`${API_URL}/banners/${id}`, dto);
+                }),
+                tap((updated) => this.bannerCache.set(updated.id, updated))
+            );
+        }
+
+        return this.http.patch<BannerEntity>(`${API_URL}/banners/${id}`, data).pipe(
+            tap((updated) => this.bannerCache.set(updated.id, updated))
+        );
+    }
+
+
+
+    uploadEntityImage(file: File, folder: string): Observable<{ fileName: string; secureUrl: string }> {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        return this.http.post<{ fileName: string; secureUrl: string }>(
+            `${API_URL}/files/${folder}`,
+            formData
+        );
     }
 
 }

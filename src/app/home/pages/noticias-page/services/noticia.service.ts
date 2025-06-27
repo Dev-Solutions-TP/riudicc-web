@@ -49,7 +49,7 @@ export interface CreateNoticiaDto {
     paisCode?: string;
     pais?: string;
     ciudad?: string;
-    latitud?: number;
+    latitud?: number
     longitud?: number;
     state: string;
     displayDate?: Date;

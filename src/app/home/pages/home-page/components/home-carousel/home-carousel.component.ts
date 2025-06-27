@@ -13,7 +13,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { Banner } from '../../interfaces/banner.interface';
+import { BannerEntity } from '../../interfaces/banner.interface';
 import { ImageNamePipe } from '@shared/pipes/image.pipe';
 import { RouterLink } from '@angular/router';
 
@@ -48,7 +48,7 @@ export class HomeCarouselComponent implements AfterViewInit {
 
 
 
-  banners = input.required<Banner[]>();
+  banners = input.required<BannerEntity[]>();
 
   swiperDiv = viewChild.required<ElementRef>('swiperDiv');
 
@@ -91,7 +91,7 @@ export class HomeCarouselComponent implements AfterViewInit {
 
 
   // Recibe un banner y devuelve el altText según el idioma seleccionado
-  getAltText = (banner: Banner): string => {
+  getAltText = (banner: BannerEntity): string => {
     const traduccion = banner.traducciones.find(
       t => t.idioma === this.currentLocale()
     );

@@ -2,10 +2,11 @@ import { Routes } from '@angular/router';
 import { IsAdminGuard, IsAdminOrOwnerGuard } from '@auth/guards/is-admin.guard';
 import { AdminDashboardLayoutComponent } from './layouts/admin-dashboard-layout/admin-dashboard-layout.component';
 import { NoticiasAdminPageComponent } from './pages/noticias-admin-page/noticias-admin-page.component';
-import { BannersAdminPageComponent } from './pages/banner-admin-page copy/banners-admin-page.component';
+import { BannersAdminPageComponent } from './pages/banners-admin-page/banners-admin-page/banners-admin-page.component';
 import { InstitucionesAdminPageComponent } from './pages/instituciones-admin-page/instituciones-admin-page.component';
 import { IsOwnerGuard } from '@auth/guards/is-admin-owner.guard';
 import { NoticiaDetailsComponent } from './pages/noticias/noticia-admin-page/noticia-details/noticia-details.component';
+import { BannerAdminPageComponent } from './pages/banner-admin-page/banner-admin-page/banner-admin-page.component';
 
 
 export const adminDashboardRoutes: Routes = [
@@ -21,7 +22,7 @@ export const adminDashboardRoutes: Routes = [
       },
       {
         path: 'banners/:id',
-        component: NoticiasAdminPageComponent,
+        component: BannerAdminPageComponent,
         canMatch: [IsAdminGuard],
 
       },
@@ -50,7 +51,7 @@ export const adminDashboardRoutes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'universidades',
+        redirectTo: 'banners',
       },
     ],
   },

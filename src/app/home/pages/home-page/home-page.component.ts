@@ -13,7 +13,7 @@ import { BlogComponent } from "../../components/NewsBlog/news-blog.component";
 
 @Component({
   selector: 'app-home-page',
-  imports: [RouterLink, HomeCarouselComponent, NoticiaCardComponent, BlogComponent],
+  imports: [RouterLink, HomeCarouselComponent, BlogComponent],
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent {
