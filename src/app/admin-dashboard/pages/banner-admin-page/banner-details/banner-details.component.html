@@ -208,19 +208,7 @@
             </button>
         </div>
         }
-        @if (traduccionesFormArray.errors as errors) {
-        <div class="text-red-500 mt-2 text-sm">
-            @if (errors.minTraducciones) {
-            Debe ingresar al menos <strong>dos traducciones</strong>.
-            }
-            @if (errors.camposIncompletos) {
-            Todas las traducciones deben tener <strong>idioma</strong> y <strong>texto alternativo</strong>.
-            }
-            @if (errors.idiomasDuplicados) {
-            No se pueden repetir los <strong>idiomas</strong> en las traducciones.
-            }
-        </div>
-        }
+
         }
 
         <button
