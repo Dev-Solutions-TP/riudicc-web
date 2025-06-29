@@ -1,0 +1,306 @@
+<form
+    [formGroup]="institucionForm"
+    (ngSubmit)="onSubmit()"
+    class="space-y-6"
+>
+    <section>
+        <h2 class="text-lg font-bold">Datos Generales</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Slug</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="slug"
+                    class="input input-bordered w-full"
+                />
+                <form-error-label [control]="institucionForm.get('slug')!" />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Código</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="codigo"
+                    class="input input-bordered w-full"
+                />
+                <form-error-label [control]="institucionForm.get('codigo')!" />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Tipo</span>
+                </label>
+                <select
+                    formControlName="tipo"
+                    class="select select-bordered w-full"
+                >
+                    <option value="universidad">Universidad</option>
+                    <option value="instituto">Instituto</option>
+                </select>
+                <form-error-label [control]="institucionForm.get('tipo')!" />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Tags</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="tags"
+                    class="input input-bordered w-full"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">País</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="pais"
+                    class="input input-bordered w-full"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Código País</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="paisCode"
+                    class="input input-bordered w-full"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Ciudad</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="ciudad"
+                    class="input input-bordered w-full"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <div
+                        class="tooltip tooltip-bottom z-50"
+                        data-tip="Estado del banner: &#10;Publicado (Muestra en Web),&#10;Editando (En espera a ser publicado)&#10;o Borrador (No se muestra en Web)"
+                    >
+                        <span class="label-text font-semibold cursor-help">Estado</span>
+                    </div>
+                </label>
+                <select
+                    formControlName="state"
+                    class="select select-bordered w-full"
+                >
+                    <option value="active">Publicado</option>
+                    <option value="editing">Editando</option>
+                    <option value="deleted">Borrado</option>
+                </select>
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Latitud</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="latitud"
+                    class="input input-bordered w-full"
+                />
+            </div>
+            <div>
+                <label class="label">
+                    <span class="label-text font-semibold">Longitud</span>
+                </label>
+                <input
+                    type="text"
+                    formControlName="longitud"
+                    class="input input-bordered w-full"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- <section formArrayName="images">
+        <h2 class="text-lg font-bold">Imágenes</h2>
+        @for(image of imagesFormArray.controls; track image; let i = $index) {
+        <div
+            class="border p-3 mt-2 rounded-md space-y-2"
+            [formGroupName]="i"
+        >
+            <input
+                type="text"
+                formControlName="url"
+                placeholder="Nombre del archivo o URL"
+                class="input input-bordered w-full"
+            />
+            <form-error-label [control]="image.get('url')!" />
+            <input
+                type="text"
+                formControlName="altText"
+                placeholder="Texto alternativo"
+                class="input input-bordered w-full"
+            />
+            <form-error-label [control]="image.get('altText')!" />
+            <button
+                class="btn btn-outline btn-error"
+                type="button"
+                (click)="removeImage(i)"
+            >Eliminar</button>
+        </div>
+        }
+        <button
+            class="btn btn-primary mt-2"
+            type="button"
+            (click)="addImage()"
+        >+ Agregar Imagen</button>
+    </section> -->
+
+    <section formArrayName="images">
+        <h2 class="text-lg font-bold">Imágenes</h2>
+
+        @for(image of imagesFormArray.controls; track image; let i = $index) {
+        <div
+            class="border p-3 mt-2 rounded-md space-y-2"
+            [formGroupName]="i"
+        >
+
+            <!-- Input de archivo -->
+            <input
+                type="file"
+                accept="image/*"
+                class="file-input file-input-bordered w-full"
+                (change)="onSingleImageSelected($event, i)"
+            />
+
+            <!-- Vista previa -->
+            @if (previewImageUrls()[i]) {
+            <div class="mt-2">
+                <img
+                    [src]="previewImageUrls()[i]"
+                    alt="Vista previa"
+                    class="w-full max-w-xs rounded shadow-md"
+                />
+            </div>
+            }
+
+            <!-- Alt Text -->
+            <input
+                type="text"
+                formControlName="altText"
+                placeholder="Texto alternativo"
+                class="input input-bordered w-full"
+            />
+            <form-error-label [control]="image.get('altText')!" />
+
+            <!-- Botón eliminar -->
+            <button
+                class="btn btn-outline btn-error"
+                type="button"
+                (click)="removeImage(i)"
+            >
+                Eliminar
+            </button>
+        </div>
+        }
+
+        <button
+            class="btn btn-primary mt-2"
+            type="button"
+            (click)="addImage()"
+        >
+            + Agregar Imagen
+        </button>
+    </section>
+
+    <section formArrayName="enlaces">
+        <h2 class="text-lg font-bold">Enlaces</h2>
+        @for(enlace of enlacesFormArray.controls; track enlace; let i = $index) {
+        <div
+            class="border p-3 mt-2 rounded-md space-y-2"
+            [formGroupName]="i"
+        >
+            <input
+                type="text"
+                formControlName="label"
+                placeholder="Texto visible"
+                class="input input-bordered w-full"
+            />
+            <input
+                type="text"
+                formControlName="url"
+                placeholder="URL del sitio"
+                class="input input-bordered w-full"
+            />
+            <button
+                class="btn btn-outline btn-error"
+                type="button"
+                (click)="removeEnlace(i)"
+            >Eliminar</button>
+        </div>
+        }
+        <button
+            class="btn btn-primary mt-2"
+            type="button"
+            (click)="addEnlace()"
+        >+ Agregar Enlace</button>
+    </section>
+
+    <section formArrayName="traducciones">
+        <h2 class="text-lg font-bold">Traducciones</h2>
+        @for(t of traduccionesFormArray.controls; track t; let i = $index) {
+        <div
+            class="border p-3 mt-2 rounded-md space-y-2"
+            [formGroupName]="i"
+        >
+            <select
+                formControlName="idioma"
+                class="select select-bordered w-full"
+            >
+                <option value="">Seleccione un idioma</option>
+                <option value="es">Español</option>
+                <option value="en">Inglés</option>
+            </select>
+            <input
+                type="text"
+                formControlName="name"
+                placeholder="Nombre completo"
+                class="input input-bordered w-full"
+            />
+            <input
+                type="text"
+                formControlName="shortName"
+                placeholder="Nombre corto"
+                class="input input-bordered w-full"
+            />
+            <textarea
+                formControlName="description"
+                rows="3"
+                placeholder="Descripción"
+                class="textarea textarea-bordered w-full"
+            ></textarea>
+            <button
+                class="btn btn-outline btn-error"
+                type="button"
+                (click)="removeTraduccion(i)"
+            >Eliminar</button>
+        </div>
+        }
+        <button
+            class="btn btn-primary mt-2"
+            type="button"
+            (click)="addTraduccion()"
+        >+ Agregar Traducción</button>
+
+    </section>
+    <div class="flex justify-end mb-20">
+        <button
+            class="btn btn-success"
+            type="submit"
+        >Guardar</button>
+    </div>
+    @if(wasSaved()) {
+    <div class="alert alert-success mt-2">Guardado correctamente</div>
+    }
+</form>

@@ -9,7 +9,7 @@
             <figure class="w-[30%] h-full flex items-center justify-center bg-white">
                 <img
                     [src]="institucion().images | institucionImagePipe"
-                    [alt]="institucion().images[0].altText"
+                    [alt]="imagenPrincipal()?.altText || traduccion()?.description"
                     class="h-full w-full object-contain p-4"
                 >
             </figure>
@@ -23,8 +23,8 @@
                     <h2
                         class="card-title font-montserrat text-black hover:underline cursor-pointer"
                         [routerLink]="['/partners', institucion().slug]"
-                    >{{ traduccion().name }}</h2>
-                    <p class="line-clamp-3">{{ traduccion().description }}</p>
+                    >{{ traduccion()?.name }}</h2>
+                    <p class="line-clamp-3">{{ traduccion()?.description }}</p>
                     <!-- Banderita -->
                     <div class="flex items-center space-x-2 mt-2">
                         <img
@@ -72,7 +72,7 @@
             <figure class="h-50 overflow-hidden">
                 <img
                     [src]="institucion().images | institucionImagePipe"
-                    [alt]="institucion().images[0].altText"
+                    [alt]="imagenPrincipal()?.altText || traduccion()?.description"
                     class="w-64 h-60 object-contain"
                 >
             </figure>
@@ -80,8 +80,8 @@
                 <h2
                     class="card-title  font-montserrat text-black hover:underline cursor-pointer  "
                     [routerLink]="['/partners', institucion().slug]"
-                >{{ traduccion().name }}</h2>
-                <p>{{ traduccion().description }}</p>
+                >{{ traduccion()?.name }}</h2>
+                <p>{{ traduccion()?.description }}</p>
                 <div class="flex items-center space-x-2 mt-2">
                     <img
                         [src]="'https://flagcdn.com/w40/' + (institucion().paisCode.toLowerCase()) + '.png'"

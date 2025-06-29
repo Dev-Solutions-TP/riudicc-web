@@ -7,6 +7,7 @@ import { InstitucionesAdminPageComponent } from './pages/instituciones-admin-pag
 import { IsOwnerGuard } from '@auth/guards/is-admin-owner.guard';
 import { NoticiaDetailsComponent } from './pages/noticias/noticia-admin-page/noticia-details/noticia-details.component';
 import { BannerAdminPageComponent } from './pages/banner-admin-page/banner-admin-page/banner-admin-page.component';
+import { InstitucionAdminPageComponent } from './pages/institucion-admin-page/institucion-admin-page/institucion-admin-page.component';
 
 
 export const adminDashboardRoutes: Routes = [
@@ -46,7 +47,7 @@ export const adminDashboardRoutes: Routes = [
       },
       {
         path: 'universidades/:id',
-        component: NoticiasAdminPageComponent,
+        component: InstitucionAdminPageComponent,
         canMatch: [IsAdminOrOwnerGuard],
       },
       {

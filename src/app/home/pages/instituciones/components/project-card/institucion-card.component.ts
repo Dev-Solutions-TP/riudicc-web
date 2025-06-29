@@ -5,6 +5,7 @@ import { InstitcionImagePipe } from '../../pipes/instituciones-project-image.pip
 import { InstitucionEntity } from '../../interfaces/aliados.interface';
 import { RouterLink } from '@angular/router';
 import { LocalizationService } from '@shared/services/localization.service';
+import { getImagenPrincipal, getTraduccion } from '../../utils/institucion.utils';
 
 
 @Component({
@@ -26,19 +27,14 @@ export class InstitucionCardComponent {
   // localet = signal('es'); // o 'en', o como quieras gestionar el idioma
 
   // Obtiene la traducción preferida según idiomaActual, sino la primera
-  traduccion = computed(() => {
-    const actual = this.institucion().traducciones.find(
-      t => t.idioma === this.locale()
-    );
 
-    return actual ?? this.institucion().traducciones[0];
-  });
+
+  private currentLocale = signal(inject(LOCALE_ID));
 
   // Obtiene la imagen principal (puedes usar la primera o una que cumpla algún criterio)
-  imagenPrincipal = computed(() => {
-    // Devuelve el primer objeto de imagen o undefined
-    return this.institucion().images?.[0];
-  });
+  imagenPrincipal =
+    getImagenPrincipal(this.institucion);
+  traduccion = getTraduccion(this.institucion, this.currentLocale);
 
 
   abrirEnlace(url: string) {

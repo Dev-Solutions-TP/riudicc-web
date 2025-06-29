@@ -76,8 +76,8 @@ export const homeRoutes: Routes = [
             },
 
             {
-                path: 'eu',
-                title: 'European Society',
+                path: 'projects',
+                title: 'Poyectos Inter Institucionales',
                 component: SociedaEuPageComponent,
             },
             {

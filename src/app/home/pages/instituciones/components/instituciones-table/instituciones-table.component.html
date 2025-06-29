@@ -1,7 +1,7 @@
 <div class="overflow-x-auto mb-10 pb-10">
     <table class="table">
         <!-- head -->
-        <thead class=" text-white">
+        <thead class="">
             <tr>
                 <!-- <th>
           <label>
@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <a
-                                [routerLink]="['/admin/insituciones', institucion.id]"
+                                [routerLink]="['/admin/universidades', institucion.id]"
                                 class="font-bold hover:text-accent transition-colors duration-300"
                             > {{ getTraduccionFrom(institucion).description }}</a>
 
@@ -59,11 +59,11 @@
                     {{ institucion.slug }}
                 </td>
                 <td>
-                    {{ institucion.paisCode }}
+                    {{ institucion.state ==='active' ? 'Activo' : 'Inactivo' }}
                 </td>
                 <th>
                     <a
-                        [routerLink]="['/admin/insituciones', institucion.id]"
+                        [routerLink]="['/admin/universidades', institucion.id]"
                         class="btn btn-ghost text-accent btn-xs"
                     >
                         Details

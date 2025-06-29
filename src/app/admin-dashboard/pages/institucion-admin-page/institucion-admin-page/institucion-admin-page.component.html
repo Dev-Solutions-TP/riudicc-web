@@ -1,0 +1,22 @@
+<h1 class="text-2xl font-bold">Edición de Universidad</h1>
+
+<!-- Spinner de carga -->
+@if (institucionResource.isLoading()) {
+<div class="flex justify-center items-center h-screen">
+    <span class="loading loading-spinner loading-lg"></span>
+</div>
+}
+
+<!-- Contenido de universidad -->
+@if (institucionResource.hasValue()) {
+<div class="mb-5">
+    @if (institucionResource.value().id !== 'new') {
+    <h3 class="text-md">
+        Universidad: {{ institucionResource.value().slug }}
+    </h3>
+    }
+</div>
+
+<!-- Componente de detalles -->
+<institucion-details [institucion]="institucionResource.value()!" />
+}

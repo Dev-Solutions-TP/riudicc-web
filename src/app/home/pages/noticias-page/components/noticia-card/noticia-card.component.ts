@@ -14,6 +14,10 @@ import { DatePipe } from '@angular/common';
 export class NoticiaCardComponent {
 
 
+  //constructor
+  constructor() {
+
+  }
 
   private locale = signal(inject(LOCALE_ID));
   private lang = inject(LocalizationService);
@@ -28,7 +32,16 @@ export class NoticiaCardComponent {
     return t ?? this.noticia().traducciones[0];
   });
 
-  imagenPrincipal = computed(() => this.noticia().images?.[0]);
+  imagenPrincipal = computed(() => {
+
+    console.log('NoticiaCardComponent.slug', this.noticia().slug);
+    console.log('NoticiaCardComponent notiicias', this.noticia().images);
+
+    console.log('NoticiaCardComponent.imagenPrincipal', this.noticia().images?.[0]);
+
+
+    return this.noticia().images?.[0];
+  });
 
   viewMoreText = this.lang.viewMoreText;
 

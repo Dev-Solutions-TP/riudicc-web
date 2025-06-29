@@ -21,6 +21,7 @@ export interface InstitucionEntity {
     ciudad: string;
     latitud: string;
     longitud: string;
+    state: string;
     images: ImageEntity[];
     enlaces: Enlace[];
     traducciones: Traduccione[];
@@ -36,4 +37,25 @@ export interface Traduccione {
     idioma: string;
     name: string;
     description: string;
+    shortName: string;
+}
+
+
+export interface UpdateInstitucionDto {
+    codigo?: string;
+    slug?: string;
+    tipo?: string;
+    paisCode?: string;
+    pais?: string;
+    ciudad?: string;
+    latitud?: string;
+    longitud?: string;
+    tags?: string[];
+    state: string;
+    traducciones: Traduccione[];
+    images?: ImageInput[];
+    enlaces: Enlace[];
+}export interface ImageInput {
+    url: string;
+    altText: string;
 }
