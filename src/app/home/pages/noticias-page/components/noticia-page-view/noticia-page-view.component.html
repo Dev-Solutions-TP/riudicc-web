@@ -30,7 +30,7 @@
         @if(noticia().paisCode){
 
         <img
-            [src]="'https://flagcdn.com/w40/' + noticia().paisCode + '.png'"
+            [src]="'https://flagcdn.com/w40/' + noticia().paisCode.toLowerCase() + '.png'"
             class="w-6 h-4 object-cover rounded-sm"
             [alt]="noticia().pais"
         >
